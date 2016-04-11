@@ -15,6 +15,7 @@ public class ClientsEntity {
     private String name;
     private String surname;
     private List<RolesEntity> roles;
+    private List<MethodicsEntity> methodics;
 
     public ClientsEntity(){}
 
@@ -88,6 +89,15 @@ public class ClientsEntity {
 
     public void setRoles(List<RolesEntity> role) {
         this.roles = role;
+    }
+
+    @ManyToMany(mappedBy = "developers")
+    public List<MethodicsEntity> getMethodics() {
+        return methodics;
+    }
+
+    public void setMethodics(List<MethodicsEntity> methodics) {
+        this.methodics = methodics;
     }
 
     @Override
