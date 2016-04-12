@@ -17,6 +17,7 @@ public class ClientsEntity {
     private List<RolesEntity> roles;
     private List<MethodicsEntity> methodics;
     private List<CoordinationResultsEntity> coordinationResults;
+    private List<JucticeResultEntity> jucticeResultEntities;
 
     public ClientsEntity(){}
 
@@ -36,6 +37,15 @@ public class ClientsEntity {
 
     public void setIdClients(int idClients) {
         this.idClients = idClients;
+    }
+
+    @ManyToMany(mappedBy = "developers")
+    public List<JucticeResultEntity> getJucticeResultEntities() {
+        return jucticeResultEntities;
+    }
+
+    public void setJucticeResultEntities(List<JucticeResultEntity> jucticeResultEntities) {
+        this.jucticeResultEntities = jucticeResultEntities;
     }
 
     @Basic

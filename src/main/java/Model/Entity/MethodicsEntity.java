@@ -16,6 +16,7 @@ public class MethodicsEntity {
     private Date creatingDate;
     private List<ClientsEntity> developers;
     private List<QueriesEntity> queries;
+    private List<PackagesEntity> packages;
 
     public MethodicsEntity(){}
 
@@ -64,6 +65,15 @@ public class MethodicsEntity {
 
     public void setCreatingDate(Date creatingDate) {
         this.creatingDate = creatingDate;
+    }
+
+    @OneToMany(mappedBy = "method")
+    public List<PackagesEntity> getPackages() {
+        return packages;
+    }
+
+    public void setPackages(List<PackagesEntity> packages) {
+        this.packages = packages;
     }
 
     @Override

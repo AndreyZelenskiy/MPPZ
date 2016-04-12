@@ -73,6 +73,8 @@
                 <value>Model.Entity.QueriesEntity</value>
                 <value>Model.Entity.CoordinationResultsEntity</value>
                 <value>Model.Entity.TypesOfQueriesEntity</value>
+                <value>Model.Entity.JucticeResultEntity</value>
+                <value>Model.Entity.PackagesEntity</value>
             </list>
         </property>
     </bean>

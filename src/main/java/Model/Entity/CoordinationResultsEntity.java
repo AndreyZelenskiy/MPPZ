@@ -13,10 +13,12 @@ public class CoordinationResultsEntity {
     private String resultText;
     private QueriesEntity query;
     private List<ClientsEntity> developers;
+    private PackagesEntity packageEntity;
 
     public CoordinationResultsEntity(){}
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCoordinationResult")
     public int getIdCoordinationResult() {
         return idCoordinationResult;
@@ -40,15 +42,6 @@ public class CoordinationResultsEntity {
         this.resultText = resultText;
     }
 
-    @Override
-    public String toString() {
-        return "CoordinationResultsEntity{" +
-                "idCoordinationResult=" + idCoordinationResult +
-                ", resultText='" + resultText + '\'' +
-                ", query=" + query +
-                '}';
-    }
-
     @OneToOne(mappedBy = "coordinationResult")
     public QueriesEntity getQuery() {
         return query;
@@ -56,6 +49,15 @@ public class CoordinationResultsEntity {
 
     public void setQuery(QueriesEntity query) {
         this.query = query;
+    }
+
+    @OneToOne(mappedBy = "coordinationResult")
+    public PackagesEntity getPackageEntity() {
+        return packageEntity;
+    }
+
+    public void setPackageEntity(PackagesEntity packeEntity) {
+        this.packageEntity = packeEntity;
     }
 
     @ManyToMany(mappedBy = "coordinationResults", fetch = FetchType.EAGER)
@@ -86,4 +88,14 @@ public class CoordinationResultsEntity {
         result = 31 * result + (resultText != null ? resultText.hashCode() : 0);
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "CoordinationResultsEntity{" +
+                "idCoordinationResult=" + idCoordinationResult +
+                ", resultText='" + resultText + '\'' +
+                ", query=" + query +
+                '}';
+    }
+
 }

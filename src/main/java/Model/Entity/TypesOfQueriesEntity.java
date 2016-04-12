@@ -12,6 +12,7 @@ public class TypesOfQueriesEntity {
     private int idType;
     private String type;
     private List<QueriesEntity> queries;
+    private List<PackagesEntity> packagesEntities;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,5 +62,14 @@ public class TypesOfQueriesEntity {
         int result = idType;
         result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "type")
+    public List<PackagesEntity> getPackagesEntities() {
+        return packagesEntities;
+    }
+
+    public void setPackagesEntities(List<PackagesEntity> packagesEntities) {
+        this.packagesEntities = packagesEntities;
     }
 }
