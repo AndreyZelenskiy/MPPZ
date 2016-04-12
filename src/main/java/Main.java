@@ -11,17 +11,30 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args){
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-root.xml");
+        RegistrRepository registrRepository = context.getBean(RegistrRepository.class);
+        PackagesRepository packagesRepository = context.getBean(PackagesRepository.class);
 
-        PackagesRepository repository = context.getBean(PackagesRepository.class);
-        PackagesEntity packagesEntity = repository.getPackgesEntityByReview("Sample review");
+        RegistrEntity regist = new RegistrEntity();
+        MethodicsEntity method = packagesRepository.getPackgesEntityByReview("Sample review").getMethod();
+        regist.setMethod(method);
+        method.setRegistr(regist);
 
-        JucticeResultEntity result = packagesEntity.getJucticeResult();
-        result.setDevelopers(Arrays.asList(packagesEntity.getMethod().getDevelopers().get(0)));
-        packagesEntity.getMethod().getDevelopers().get(0).setJucticeResultEntities(Arrays.asList(result));
+        MethodicTypesEntity type = new MethodicTypesEntity();
+        type.setMethodicType("Sample type");
+        regist.setType(type);
 
-        repository.save(packagesEntity);
+        registrRepository.save(regist);
     }
 }
+//
+//    PackagesRepository repository = context.getBean(PackagesRepository.class);
+//    PackagesEntity packagesEntity = repository.getPackgesEntityByReview("Sample review");
+//
+//    JucticeResultEntity result = packagesEntity.getJucticeResult();
+//result.setDevelopers(Arrays.asList(packagesEntity.getMethod().getDevelopers().get(0)));
+//        packagesEntity.getMethod().getDevelopers().get(0).setJucticeResultEntities(Arrays.asList(result));
+//
+//        repository.save(packagesEntity);
 //    MethodicsRepository repo = context.getBean(MethodicsRepository.class);
 //
 //    MethodicsEntity method = repo.getMethodicByNameOfMethodic("Test methodic");

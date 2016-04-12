@@ -75,6 +75,8 @@
                 <value>Model.Entity.TypesOfQueriesEntity</value>
                 <value>Model.Entity.JucticeResultEntity</value>
                 <value>Model.Entity.PackagesEntity</value>
+                <value>Model.Entity.MethodicTypesEntity</value>
+                <value>Model.Entity.RegistrEntity</value>
             </list>
         </property>
     </bean>

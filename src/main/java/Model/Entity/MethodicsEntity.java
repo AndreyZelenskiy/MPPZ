@@ -17,6 +17,7 @@ public class MethodicsEntity {
     private List<ClientsEntity> developers;
     private List<QueriesEntity> queries;
     private List<PackagesEntity> packages;
+    private RegistrEntity registr;
 
     public MethodicsEntity(){}
 
@@ -27,7 +28,7 @@ public class MethodicsEntity {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idMethodic")
     public int getIdMethodic() {
         return idMethodic;
@@ -45,6 +46,15 @@ public class MethodicsEntity {
 
     public void setNameOfMethodic(String nameOfMethodic) {
         this.nameOfMethodic = nameOfMethodic;
+    }
+
+    @OneToOne(mappedBy = "method")
+    public RegistrEntity getRegistr() {
+        return registr;
+    }
+
+    public void setRegistr(RegistrEntity registr) {
+        this.registr = registr;
     }
 
     @Basic
