@@ -16,6 +16,7 @@ public class ClientsEntity {
     private String surname;
     private List<RolesEntity> roles;
     private List<MethodicsEntity> methodics;
+    private List<CoordinationResultsEntity> coordinationResults;
 
     public ClientsEntity(){}
 
@@ -100,6 +101,20 @@ public class ClientsEntity {
         this.methodics = methodics;
     }
 
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "DeveloperCoordResult",
+        joinColumns = @JoinColumn(name = "idCoordinationResult"),
+            inverseJoinColumns = @JoinColumn(name = "idDeveloper")
+    )
+    public List<CoordinationResultsEntity> getCoordinationResults() {
+        return coordinationResults;
+    }
+
+    public void setCoordinationResults(List<CoordinationResultsEntity> coordinationResults) {
+        this.coordinationResults = coordinationResults;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,5 +139,16 @@ public class ClientsEntity {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ClientsEntity{" +
+                "idClients=" + idClients +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                '}';
     }
 }

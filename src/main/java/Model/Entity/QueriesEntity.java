@@ -23,8 +23,7 @@ public class QueriesEntity {
         this.idQuery = idQuery;
     }
 
-    @OneToOne(targetEntity = CoordinationResultsEntity.class,
-            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn(name = "idResult")
     public CoordinationResultsEntity getCoordinationResult() {
         return coordinationResult;

@@ -1,6 +1,7 @@
 package Model.Entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by xoll on 11.04.16.
@@ -11,6 +12,7 @@ public class CoordinationResultsEntity {
     private int idCoordinationResult;
     private String resultText;
     private QueriesEntity query;
+    private List<ClientsEntity> developers;
 
     public CoordinationResultsEntity(){}
 
@@ -38,6 +40,15 @@ public class CoordinationResultsEntity {
         this.resultText = resultText;
     }
 
+    @Override
+    public String toString() {
+        return "CoordinationResultsEntity{" +
+                "idCoordinationResult=" + idCoordinationResult +
+                ", resultText='" + resultText + '\'' +
+                ", query=" + query +
+                '}';
+    }
+
     @OneToOne(mappedBy = "coordinationResult")
     public QueriesEntity getQuery() {
         return query;
@@ -45,6 +56,15 @@ public class CoordinationResultsEntity {
 
     public void setQuery(QueriesEntity query) {
         this.query = query;
+    }
+
+    @ManyToMany(mappedBy = "coordinationResults", fetch = FetchType.EAGER)
+    public List<ClientsEntity> getDevelopers() {
+        return developers;
+    }
+
+    public void setDevelopers(List<ClientsEntity> developers) {
+        this.developers = developers;
     }
 
     @Override

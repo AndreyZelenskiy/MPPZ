@@ -14,6 +14,7 @@ public class TypesOfQueriesEntity {
     private List<QueriesEntity> queries;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idType")
     public int getIdType() {
         return idType;
