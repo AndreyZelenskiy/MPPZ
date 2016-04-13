@@ -13,7 +13,7 @@ public class RegistrEntity {
     private Date editDate;
     private Date endDate;
     private MethodicsEntity method;
-    private MethodicTypesEntity type;
+    private MethodType type;
 
     @Id
     @Column(name = "idRegist")
@@ -45,13 +45,13 @@ public class RegistrEntity {
         this.method = method;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "idMethodicType")
-    public MethodicTypesEntity getType() {
+
+    @Enumerated(EnumType.ORDINAL)
+    public MethodType getType() {
         return type;
     }
 
-    public void setType(MethodicTypesEntity type) {
+    public void setType(MethodType type) {
         this.type = type;
     }
 

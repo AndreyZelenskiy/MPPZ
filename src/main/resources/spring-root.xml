@@ -63,19 +63,17 @@
             <props>
                 <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/mydb</prop>
                 <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">update</prop>-->
             </props>
         </property>
         <property name="annotatedClasses">
             <list>
                 <value>Model.Entity.ClientsEntity</value>
-                <value>Model.Entity.RolesEntity</value>
                 <value>Model.Entity.MethodicsEntity</value>
                 <value>Model.Entity.QueriesEntity</value>
                 <value>Model.Entity.CoordinationResultsEntity</value>
-                <value>Model.Entity.TypesOfQueriesEntity</value>
                 <value>Model.Entity.JucticeResultEntity</value>
                 <value>Model.Entity.PackagesEntity</value>
-                <value>Model.Entity.MethodicTypesEntity</value>
                 <value>Model.Entity.RegistrEntity</value>
             </list>
         </property>

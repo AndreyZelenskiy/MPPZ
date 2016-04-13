@@ -13,7 +13,7 @@ public class PackagesEntity {
     private CoordinationResultsEntity coordinationResult;
     private MethodicsEntity method;
     private JucticeResultEntity jucticeResult;
-    private TypesOfQueriesEntity type;
+    private TypeOfQuery type;
 
     @Id
     @Column(name = "idPackage")
@@ -45,13 +45,13 @@ public class PackagesEntity {
         this.coordinationResult = coordinationResult;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "idQueryType")
-    public TypesOfQueriesEntity getType() {
+
+    @Enumerated(EnumType.ORDINAL)
+    public TypeOfQuery getType() {
         return type;
     }
 
-    public void setType(TypesOfQueriesEntity type) {
+    public void setType(TypeOfQuery type) {
         this.type = type;
     }
 

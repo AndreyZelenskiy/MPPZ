@@ -11,7 +11,7 @@ public class QueriesEntity {
     private int idQuery;
     private MethodicsEntity method;
     private CoordinationResultsEntity coordinationResult;
-    private TypesOfQueriesEntity type;
+    private TypeOfQuery type;
 
     @Id
     @Column(name = "idQuery")
@@ -60,13 +60,14 @@ public class QueriesEntity {
         return idQuery;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "idQueryType")
-    public TypesOfQueriesEntity getType() {
+
+    @Column
+    @Enumerated(EnumType.ORDINAL)
+    public TypeOfQuery getType() {
         return type;
     }
 
-    public void setType(TypesOfQueriesEntity type) {
+    public void setType(TypeOfQuery type) {
         this.type = type;
     }
 }

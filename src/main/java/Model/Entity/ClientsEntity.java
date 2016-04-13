@@ -14,7 +14,7 @@ public class ClientsEntity {
     private String password;
     private String name;
     private String surname;
-    private List<RolesEntity> roles;
+    private List<Role> roles;
     private List<MethodicsEntity> methodics;
     private List<CoordinationResultsEntity> coordinationResults;
     private List<JucticeResultEntity> jucticeResultEntities;
@@ -88,21 +88,22 @@ public class ClientsEntity {
         this.surname = surname;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "ClientRole",
-            joinColumns = @JoinColumn(name = "idRole"),
-            inverseJoinColumns = @JoinColumn(name = "idClient")
-    )
-    public List<RolesEntity> getRoles() {
+    @JoinTable(name = "Role", joinColumns = @JoinColumn(name = "ClientId"))
+    @Enumerated(EnumType.ORDINAL)
+    @ElementCollection(fetch = FetchType.EAGER)
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<RolesEntity> role) {
+    public void setRoles(List<Role> role) {
         this.roles = role;
     }
 
-    @ManyToMany(mappedBy = "developers")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "MethodicAuthor",
+            joinColumns = @JoinColumn(name = "idMethodic"),
+            inverseJoinColumns = @JoinColumn(name = "idAuthor")
+    )
     public List<MethodicsEntity> getMethodics() {
         return methodics;
     }
