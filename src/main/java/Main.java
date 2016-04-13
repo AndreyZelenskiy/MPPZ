@@ -14,13 +14,8 @@ public class Main {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-root.xml");
         QueriesRepository queryRepository = context.getBean(QueriesRepository.class);
         ClientsRepository clientRepository = context.getBean(ClientsRepository.class);
-        QueriesEntity query = queryRepository.getQueriesByIdQuery(1);
-
-        PackagesRepository packageRepository = context.getBean(PackagesRepository.class);
-        PackagesEntity pack = new PackagesEntity();
-        pack.setMethod(clientRepository.getClientsEntityByLogin("admin").getMethodics().get(0));
-        pack.setCoordinationResult(query.getCoordinationResult());
-        pack.setReview("Sample review");
-        pack.setType(TypeOfQuery.ADD);
+        ClientsEntity client = clientRepository.getClientsEntityByLogin("admin");
+        client.setRoles(Arrays.asList(Role.COORDINATION_WORKER, Role.DEVELOPER));
+        clientRepository.save(client);
     }
 }
