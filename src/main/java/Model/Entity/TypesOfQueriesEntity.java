@@ -11,8 +11,6 @@ import java.util.List;
 public class TypesOfQueriesEntity {
     private int idType;
     private String type;
-    private List<QueriesEntity> queries;
-    private List<PackagesEntity> packagesEntities;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,15 +33,6 @@ public class TypesOfQueriesEntity {
         this.type = type;
     }
 
-    @OneToMany(mappedBy = "type")
-    public List<QueriesEntity> getQueries() {
-        return queries;
-    }
-
-    public void setQueries(List<QueriesEntity> queries) {
-        this.queries = queries;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -64,12 +53,4 @@ public class TypesOfQueriesEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "type")
-    public List<PackagesEntity> getPackagesEntities() {
-        return packagesEntities;
-    }
-
-    public void setPackagesEntities(List<PackagesEntity> packagesEntities) {
-        this.packagesEntities = packagesEntities;
-    }
 }

@@ -11,7 +11,6 @@ import java.util.List;
 public class RolesEntity {
     private int idRoles;
     private String type;
-    private List<ClientsEntity> clients;
 
     public RolesEntity(){}
 
@@ -38,15 +37,6 @@ public class RolesEntity {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    @ManyToMany(mappedBy = "roles")
-    public List<ClientsEntity> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<ClientsEntity> clients) {
-        this.clients = clients;
     }
 
     @Override

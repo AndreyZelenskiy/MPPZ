@@ -11,19 +11,13 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args){
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-root.xml");
-        RegistrRepository registrRepository = context.getBean(RegistrRepository.class);
-        PackagesRepository packagesRepository = context.getBean(PackagesRepository.class);
 
-        RegistrEntity regist = new RegistrEntity();
-        MethodicsEntity method = packagesRepository.getPackgesEntityByReview("Sample review").getMethod();
-        regist.setMethod(method);
-        method.setRegistr(regist);
+        ClientsRepository repository = context.getBean(ClientsRepository.class);
+        ClientsEntity client = repository.getClientsEntityByLogin("admin");
+        RolesEntity role = new RolesEntity("Second role");
+        client.setRoles(Arrays.asList(client.getRoles().get(0), role));
 
-        MethodicTypesEntity type = new MethodicTypesEntity();
-        type.setMethodicType("Sample type");
-        regist.setType(type);
-
-        registrRepository.save(regist);
+        repository.save(client);
     }
 }
 //

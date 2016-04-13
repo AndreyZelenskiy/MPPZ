@@ -14,10 +14,6 @@ public class MethodicsEntity {
     private String nameOfMethodic;
     private String methodicText;
     private Date creatingDate;
-    private List<ClientsEntity> developers;
-    private List<QueriesEntity> queries;
-    private List<PackagesEntity> packages;
-    private RegistrEntity registr;
 
     public MethodicsEntity(){}
 
@@ -48,15 +44,6 @@ public class MethodicsEntity {
         this.nameOfMethodic = nameOfMethodic;
     }
 
-    @OneToOne(mappedBy = "method")
-    public RegistrEntity getRegistr() {
-        return registr;
-    }
-
-    public void setRegistr(RegistrEntity registr) {
-        this.registr = registr;
-    }
-
     @Basic
     @Column(name = "methodicText")
     public String getMethodicText() {
@@ -76,16 +63,6 @@ public class MethodicsEntity {
     public void setCreatingDate(Date creatingDate) {
         this.creatingDate = creatingDate;
     }
-
-    @OneToMany(mappedBy = "method")
-    public List<PackagesEntity> getPackages() {
-        return packages;
-    }
-
-    public void setPackages(List<PackagesEntity> packages) {
-        this.packages = packages;
-    }
-
     @Override
     public String toString() {
         return "MethodicsEntity{" +
@@ -94,29 +71,6 @@ public class MethodicsEntity {
                 ", nameOfMethodic='" + nameOfMethodic + '\'' +
                 ", idMethodic=" + idMethodic +
                 '}';
-    }
-
-    @OneToMany(mappedBy = "method")
-    public List<QueriesEntity> getQueries() {
-        return queries;
-    }
-
-    public void setQueries(List<QueriesEntity> queries) {
-        this.queries = queries;
-    }
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "MethodicAuthor",
-            joinColumns = @JoinColumn(name = "idAuthor"),
-            inverseJoinColumns = @JoinColumn(name = "idMethodic")
-    )
-    public List<ClientsEntity> getDevelopers() {
-        return developers;
-    }
-
-    public void setDevelopers(List<ClientsEntity> developers) {
-        this.developers = developers;
     }
 
     @Override

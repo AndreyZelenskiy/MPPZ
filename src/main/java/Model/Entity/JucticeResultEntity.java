@@ -11,7 +11,6 @@ import java.util.List;
 public class JucticeResultEntity {
     private int idJucticeResult;
     private String resultText;
-    private PackagesEntity packagesEntity;
     private List<ClientsEntity> developers;
 
     @Id
@@ -22,15 +21,6 @@ public class JucticeResultEntity {
 
     public void setIdJucticeResult(int idJucticeResult) {
         this.idJucticeResult = idJucticeResult;
-    }
-
-    @OneToOne(mappedBy = "jucticeResult")
-    public PackagesEntity getPackagesEntity() {
-        return packagesEntity;
-    }
-
-    public void setPackagesEntity(PackagesEntity packagesEntity) {
-        this.packagesEntity = packagesEntity;
     }
 
     @Basic

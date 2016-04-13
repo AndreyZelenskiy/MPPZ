@@ -11,9 +11,7 @@ import java.util.List;
 public class CoordinationResultsEntity {
     private int idCoordinationResult;
     private String resultText;
-    private QueriesEntity query;
     private List<ClientsEntity> developers;
-    private PackagesEntity packageEntity;
 
     public CoordinationResultsEntity(){}
 
@@ -40,24 +38,6 @@ public class CoordinationResultsEntity {
 
     public void setResultText(String resultText) {
         this.resultText = resultText;
-    }
-
-    @OneToOne(mappedBy = "coordinationResult")
-    public QueriesEntity getQuery() {
-        return query;
-    }
-
-    public void setQuery(QueriesEntity query) {
-        this.query = query;
-    }
-
-    @OneToOne(mappedBy = "coordinationResult")
-    public PackagesEntity getPackageEntity() {
-        return packageEntity;
-    }
-
-    public void setPackageEntity(PackagesEntity packeEntity) {
-        this.packageEntity = packeEntity;
     }
 
     @ManyToMany(mappedBy = "coordinationResults", fetch = FetchType.EAGER)
@@ -94,7 +74,6 @@ public class CoordinationResultsEntity {
         return "CoordinationResultsEntity{" +
                 "idCoordinationResult=" + idCoordinationResult +
                 ", resultText='" + resultText + '\'' +
-                ", query=" + query +
                 '}';
     }
 
