@@ -28,7 +28,7 @@ public class RepositoryTest {
         return Arrays.asList(new Object[][]{
                 {"bogdan", "admin", "firstName", "secondName", "review1"},
                 {"help", "admin", "firstName", "secondName", "review2"},
-                {"test", "admin", "firstName", "secondName", "review3"}
+                {"Admin", "admin", "firstName", "secondName", "review3"}
         });
     }
     private String login, password, name, surname, review;
@@ -88,13 +88,15 @@ public class RepositoryTest {
     @Test
     public void get006testDeletePackage(){
         List<PackagesEntity> packagesEntityList = packagesRepository.getPackgesEntityByReview(this.review);
-        packagesRepository.delete(packagesEntityList.get(0));
+        for(PackagesEntity entity: packagesEntityList)
+            packagesRepository.delete(entity);
     }
 
     @Test
     public void get007testDeleteUsers(){
         List<ClientsEntity> clientsEntityList = clientsRepository.getClientsEntityByLogin(login);
-        clientsRepository.delete(clientsEntityList.get(0));
+        for(ClientsEntity entity: clientsEntityList)
+            clientsRepository.delete(entity);
     }
 
     @Test
