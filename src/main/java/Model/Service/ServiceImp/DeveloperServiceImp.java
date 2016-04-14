@@ -17,9 +17,9 @@ public class DeveloperServiceImp implements DeveloperService {
     @Inject
     MethodicsRepository methodicsRepository;
 
-    public boolean addMethod(String name, String text) {
+    public MethodicsEntity addMethod(String name, String text) {
         if(methodicsRepository.getMethodicByNameOfMethodic(name).size() != 0){
-            return false;
+            return null;
         }
         else{
             MethodicsEntity methodicsEntity = new MethodicsEntity();
@@ -29,7 +29,7 @@ public class DeveloperServiceImp implements DeveloperService {
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
             methodicsEntity.setCreatingDate(sqlDate);
             methodicsRepository.save(methodicsEntity);
-            return true;
+            return methodicsEntity;
         }
     }
 

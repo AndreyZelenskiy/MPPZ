@@ -10,6 +10,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.inject.Inject;
 
+import static junit.framework.TestCase.assertNull;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -27,7 +29,7 @@ public class DeveloperServiceImpTest {
     public void testAddMethodic(){
         String name = "name";
         String text = "text";
-        assertTrue(developerService.addMethod(name, text));
+        assertNotNull(developerService.addMethod(name, text));
     }
 
     @Test

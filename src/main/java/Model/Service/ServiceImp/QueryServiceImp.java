@@ -1,5 +1,6 @@
 package Model.Service.ServiceImp;
 
+import Model.Entity.CoordinationResultsEntity;
 import Model.Entity.MethodicsEntity;
 import Model.Entity.QueriesEntity;
 import Model.Entity.TypeOfQuery;
@@ -24,9 +25,5 @@ public class QueryServiceImp implements QueryService {
         queriesEntity.setMethod(entity);
         queriesEntity.setCoordinationResult(null);
         queriesRepository.save(queriesEntity);
-    }
-
-    public void checkQuery() {
-
     }
 }

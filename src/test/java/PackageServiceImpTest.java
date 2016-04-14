@@ -1,7 +1,11 @@
+import Model.Entity.CoordinationResultsEntity;
 import Model.Entity.MethodicsEntity;
+import Model.Entity.PackagesEntity;
 import Model.Entity.TypeOfQuery;
+import Model.Repository.CoordinationResultRepository;
 import Model.Repository.MethodicsRepository;
 import Model.Service.DeveloperService;
+import Model.Service.PackageService;
 import Model.Service.QueryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +20,7 @@ import java.util.List;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/spring-root.xml"})
-public class QueryServiveImpTest {
+public class PackageServiceImpTest {
 
     @Inject
     QueryService queryService;
@@ -27,12 +31,22 @@ public class QueryServiveImpTest {
     @Inject
     MethodicsRepository methodicsRepository;
 
+    @Inject
+    PackageService packageService;
+
+    @Inject
+    CoordinationResultRepository resultRepository;
+
     @Test
-    public void testCreateQuery(){
-        String methodName = "Meth";
+    public void testCreatePackage() {
+        String methodName = "Meth1";
         developerService.addMethod(methodName, "Text");
         List<MethodicsEntity> methodicsEntityList =
                 methodicsRepository.getMethodicByNameOfMethodic(methodName);
-        queryService.createQuery(methodicsEntityList.get(0), TypeOfQuery.ADD);
+        CoordinationResultsEntity coordinationResultsEntity = new CoordinationResultsEntity();
+        coordinationResultsEntity.setResultText("someTest");
+        resultRepository.save(coordinationResultsEntity);
+        packageService.createPackage(methodicsEntityList.get(0), coordinationResultsEntity,
+                TypeOfQuery.ADD, "someReview");
     }
 }

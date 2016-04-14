@@ -1,6 +1,7 @@
 package Model.Service;
 
 import Model.Entity.MethodicsEntity;
+import Model.Entity.QueriesEntity;
 import Model.Entity.TypeOfQuery;
 
 /**
@@ -9,5 +10,4 @@ import Model.Entity.TypeOfQuery;
 
 public interface QueryService {
     void createQuery(MethodicsEntity entity, TypeOfQuery typeOfQuery);
-    void checkQuery();
 }

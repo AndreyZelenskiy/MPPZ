@@ -11,7 +11,7 @@ import javax.persistence.SecondaryTable;
  */
 @Service
 public interface DeveloperService {
-    boolean addMethod(String name, String text);
+    MethodicsEntity addMethod(String name, String text);
     boolean editMethod(String name, String newText);
     boolean deleteMethod(String name);
     void checkResults(MethodicsEntity entity);
