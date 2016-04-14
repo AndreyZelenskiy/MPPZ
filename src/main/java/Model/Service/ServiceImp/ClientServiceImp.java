@@ -1,6 +1,7 @@
 package Model.Service.ServiceImp;
 
 import Model.Entity.ClientsEntity;
+import Model.Entity.PackagesEntity;
 import Model.Entity.Role;
 import Model.Repository.ClientsRepository;
 import Model.Service.ClientService;
@@ -10,7 +11,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 /**
- * Created by talizorah on 16.14.4.
+ * Created by Ilias on 4/14/2016.
  */
 @Service
 public class ClientServiceImp implements ClientService {
@@ -31,7 +32,7 @@ public class ClientServiceImp implements ClientService {
 
     public boolean registration(String login, String password, String firstName, String secondName, List<Role> list) {
         ClientsEntity clientsEntity = clientsRepository.findOneByLogin(login);
-        if(clientsEntity == null){
+        if(clientsEntity==null){
             ClientsEntity newClient = new ClientsEntity(login,password,firstName,secondName);
             newClient.setRoles(list);
             newClient.setMethodics(null);

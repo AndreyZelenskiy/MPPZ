@@ -48,7 +48,7 @@
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/mydb"/>
         <property name="username" value="root"/>
-        <property name="password" value="tali1597"/>
+        <property name="password" value="adminroot"/>
     </bean>
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
@@ -83,4 +83,5 @@
     </bean>
     <context:annotation-config/>
     <jpa:repositories base-package="Model.Repository" entity-manager-factory-ref="entityManagerFactory"/>
+    <context:component-scan base-package="Model.Service.ServiceImp"/>
 </beans>
