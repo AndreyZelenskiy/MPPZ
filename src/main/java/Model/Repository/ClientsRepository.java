@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface ClientsRepository extends JpaRepository<ClientsEntity, Integer> {
     List<ClientsEntity> getClientsEntityByLogin(String login);
+    ClientsEntity findOneByLogin(String login);
 }
