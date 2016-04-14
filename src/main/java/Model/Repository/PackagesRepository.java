@@ -9,5 +9,6 @@ import java.util.List;
  * Created by xoll on 12.04.16.
  */
 public interface PackagesRepository extends JpaRepository<PackagesEntity, Integer> {
-    List<PackagesEntity> getPackgesEntityByReview(String review);
+    PackagesEntity getPackgesEntityByReview(String review);
+    List<PackagesEntity> findAll();
 }
