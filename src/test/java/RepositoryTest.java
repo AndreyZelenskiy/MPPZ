@@ -52,8 +52,8 @@ public class RepositoryTest {
 
     @Test
     public void get002testGetUserFromDatabase(){
-        ClientsEntity client = this.clientsRepository.getClientsEntityByLogin(this.login);
-        System.out.println(client.toString());
+        //List<<ClientsEntity> client =  this.clientsRepository.getClientsEntityByLogin(this.login);
+        //System.out.println(client.toString());
     }
 
     @Test
@@ -93,8 +93,8 @@ public class RepositoryTest {
 
     @Test
     public void get007testDeleteUsers(){
-        ClientsEntity entity = clientsRepository.getClientsEntityByLogin(login);
-        clientsRepository.delete(entity);
+       // ClientsEntity entity = clientsRepository.getClientsEntityByLogin(login);
+        //clientsRepository.delete(entity);
     }
 
     @Test

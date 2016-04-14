@@ -1,5 +1,6 @@
 package Model.Repository;
 
+import Model.Entity.PackagesEntity;
 import Model.Entity.RegistrEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

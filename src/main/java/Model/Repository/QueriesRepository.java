@@ -12,4 +12,5 @@ import java.util.List;
 public interface QueriesRepository extends JpaRepository<QueriesEntity, Integer> {
     QueriesEntity getQueriesByIdQuery(int id);
     List<QueriesEntity> getQueriesByType(TypeOfQuery typeOfQuery);
+    List<QueriesEntity> findAll();
 }
