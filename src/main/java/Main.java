@@ -12,10 +12,5 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args){
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-root.xml");
-        QueriesRepository queryRepository = context.getBean(QueriesRepository.class);
-        ClientsRepository clientRepository = context.getBean(ClientsRepository.class);
-        ClientsEntity client = clientRepository.getClientsEntityByLogin("admin");
-        client.setRoles(Arrays.asList(Role.COORDINATION_WORKER, Role.DEVELOPER));
-        clientRepository.save(client);
     }
 }
