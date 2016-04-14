@@ -52,8 +52,8 @@ public class RepositoryTest {
 
     @Test
     public void get002testGetUserFromDatabase(){
-        ClientsEntity client = this.clientsRepository.getClientsEntityByLogin(this.login);
-        System.out.println(client.toString());
+        List<ClientsEntity> clientsEntityList = this.clientsRepository.getClientsEntityByLogin(this.login);
+        System.out.println(clientsEntityList.get(0).toString());
     }
 
     @Test
@@ -78,8 +78,8 @@ public class RepositoryTest {
     @Test
     public void get004testCreatePackageWithMethodic(){
         PackagesEntity packagesEntity = new PackagesEntity();
-        MethodicsEntity entity = methodicsRepository.getMethodicByNameOfMethodic(this.login);
-        packagesEntity.setMethod(entity);
+        List<MethodicsEntity> methodicsEntityList = methodicsRepository.getMethodicByNameOfMethodic(this.login);
+        packagesEntity.setMethod(methodicsEntityList.get(0));
         packagesEntity.setReview(this.review);
         packagesRepository.save(packagesEntity);
     }
@@ -87,20 +87,20 @@ public class RepositoryTest {
 
     @Test
     public void get006testDeletePackage(){
-        PackagesEntity entity = packagesRepository.getPackgesEntityByReview(this.review);
-        packagesRepository.delete(entity);
+        List<PackagesEntity> packagesEntityList = packagesRepository.getPackgesEntityByReview(this.review);
+        packagesRepository.delete(packagesEntityList.get(0));
     }
 
     @Test
     public void get007testDeleteUsers(){
-        ClientsEntity entity = clientsRepository.getClientsEntityByLogin(login);
-        clientsRepository.delete(entity);
+        List<ClientsEntity> clientsEntityList = clientsRepository.getClientsEntityByLogin(login);
+        clientsRepository.delete(clientsEntityList.get(0));
     }
 
     @Test
     public void get003testCreateQuery(){
         QueriesEntity queriesEntity = new QueriesEntity();
-        queriesEntity.setMethod(methodicsRepository.getMethodicByNameOfMethodic(this.login));
+        queriesEntity.setMethod(methodicsRepository.getMethodicByNameOfMethodic(this.login).get(0));
         queriesEntity.setType(TypeOfQuery.ADD);
         queriesRepository.save(queriesEntity);
     }
