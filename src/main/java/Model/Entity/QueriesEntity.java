@@ -24,7 +24,7 @@ public class QueriesEntity {
     }
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name = "idResult")
+    @JoinColumn(name = "idResult")
     public CoordinationResultsEntity getCoordinationResult() {
         return coordinationResult;
     }

@@ -9,11 +9,14 @@ import javax.persistence.SecondaryTable;
 /**
  * Created by talizorah on 16.13.4.
  */
-@Service
+//@Service
 public interface DeveloperService {
     MethodicsEntity addMethod(String name, String text);
     boolean editMethod(String name, String newText);
     boolean deleteMethod(String name);
     void checkResults(MethodicsEntity entity);
     void getMessage(String result);
+
+    String createMethod(MethodicsEntity entity);
+
 }

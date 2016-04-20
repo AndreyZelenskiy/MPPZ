@@ -17,6 +17,17 @@ public class DeveloperServiceImp implements DeveloperService {
     @Inject
     MethodicsRepository methodicsRepository;
 
+    public String createMethod(MethodicsEntity entity) {
+        if(methodicsRepository.getMethodicByNameOfMethodic(entity.getNameOfMethodic()).size() == 0){
+                Date date = new Date();
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                entity.setCreatingDate(sqlDate);
+                methodicsRepository.save(entity);
+                return "Success";
+        }
+        return "Such name is already in use";
+    }
+
     public MethodicsEntity addMethod(String name, String text) {
         if(methodicsRepository.getMethodicByNameOfMethodic(name).size() != 0){
             return null;

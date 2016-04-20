@@ -10,5 +10,6 @@ import java.util.List;
  */
 public interface MethodicsRepository extends JpaRepository<MethodicsEntity, Integer>{
     List<MethodicsEntity> getMethodicByNameOfMethodic(String name);
+    List<MethodicsEntity> findMethodicByNameOfMethodic(String name);
 }
 
