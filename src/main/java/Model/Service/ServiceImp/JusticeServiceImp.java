@@ -34,7 +34,6 @@ public class JusticeServiceImp implements JusticeService {
                 list.add(tmp);
             }
         }
-
         return list;
     }
 

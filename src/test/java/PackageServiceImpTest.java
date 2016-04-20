@@ -4,6 +4,7 @@ import Model.Entity.PackagesEntity;
 import Model.Entity.TypeOfQuery;
 import Model.Repository.CoordinationResultRepository;
 import Model.Repository.MethodicsRepository;
+import Model.Repository.PackagesRepository;
 import Model.Service.DeveloperService;
 import Model.Service.PackageService;
 import Model.Service.QueryService;
@@ -32,6 +33,9 @@ public class PackageServiceImpTest {
     MethodicsRepository methodicsRepository;
 
     @Inject
+    PackagesRepository packagesRepository;
+
+    @Inject
     PackageService packageService;
 
     @Inject
@@ -45,8 +49,12 @@ public class PackageServiceImpTest {
                 methodicsRepository.getMethodicByNameOfMethodic(methodName);
         CoordinationResultsEntity coordinationResultsEntity = new CoordinationResultsEntity();
         coordinationResultsEntity.setResultText("someTest");
-        resultRepository.save(coordinationResultsEntity);
+        //resultRepository.save(coordinationResultsEntity);
         packageService.createPackage(methodicsEntityList.get(0), coordinationResultsEntity,
                 TypeOfQuery.ADD, "someReview");
+    //        List<PackagesEntity> result = packagesRepository.getPackgesEntityByReview("someReview");
+    //        for(PackagesEntity entity : result){
+    //            System.out.println(entity.getCoordinationResult().getResultText());
+    //        }
     }
 }

@@ -108,6 +108,7 @@ public class RepositoryTest {
     }
 
     @Test
+    @Ignore
     public void get005testDeleteQuery(){
         List<QueriesEntity> list = queriesRepository.getQueriesByType(TypeOfQuery.ADD);
         for(QueriesEntity entity: list){

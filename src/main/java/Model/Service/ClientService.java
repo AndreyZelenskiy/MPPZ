@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by talizorah on 16.13.4.
  */
-@Service
+//@Service
 public interface ClientService  {
     boolean authorization
             (String login, String password);

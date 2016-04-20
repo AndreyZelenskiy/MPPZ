@@ -36,7 +36,7 @@ public class RegistrEntity {
     }
 
     @OneToOne(cascade = CascadeType.MERGE)
-    @PrimaryKeyJoinColumn(name = "idMethodic")
+    @JoinColumn(name = "idMethodic")
     public MethodicsEntity getMethod() {
         return method;
     }

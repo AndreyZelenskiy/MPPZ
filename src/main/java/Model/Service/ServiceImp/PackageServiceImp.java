@@ -17,7 +17,7 @@ public class PackageServiceImp implements PackageService {
     PackagesRepository packagesRepository;
 
 
-    public void createPackage(MethodicsEntity methodicsEntity,
+    public PackagesEntity createPackage(MethodicsEntity methodicsEntity,
                               CoordinationResultsEntity coordinationResultsEntity,
                               TypeOfQuery queryType,
                               String review) {
@@ -28,5 +28,6 @@ public class PackageServiceImp implements PackageService {
         packagesEntity.setCoordinationResult(coordinationResultsEntity);
         packagesEntity.setType(queryType);
         packagesRepository.save(packagesEntity);
+        return packagesEntity;
     }
 }

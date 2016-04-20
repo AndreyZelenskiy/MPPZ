@@ -1,15 +1,12 @@
 package Model.Service;
 
-import Model.Entity.CoordinationResultsEntity;
-import Model.Entity.MethodicsEntity;
-import Model.Entity.QueriesEntity;
-import Model.Entity.TypeOfQuery;
+import Model.Entity.*;
 
 /**
  * Created by talizorah on 16.13.4.
  */
 public interface PackageService {
-    void createPackage
+    PackagesEntity createPackage
             (MethodicsEntity methodicsEntity,
              CoordinationResultsEntity entity,
              TypeOfQuery typeOfQuery,

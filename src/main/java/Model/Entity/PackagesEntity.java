@@ -35,8 +35,8 @@ public class PackagesEntity {
         this.review = review;
     }
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @PrimaryKeyJoinColumn(name = "idCoordResult")
+    @OneToOne( cascade = CascadeType.ALL)
+    @JoinColumn(name = "idCoordResult")
     public CoordinationResultsEntity getCoordinationResult() {
         return coordinationResult;
     }
@@ -56,7 +56,7 @@ public class PackagesEntity {
     }
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name = "idJusticeResult")
+    @JoinColumn(name = "idJusticeResult")
     public JucticeResultEntity getJucticeResult() {
         return jucticeResult;
     }
@@ -80,7 +80,7 @@ public class PackagesEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PackagesEntity that = (PackagesEntity) o;
+        PackagesEntity that     = (PackagesEntity) o;
 
         if (idPackage != that.idPackage) return false;
         if (review != null ? !review.equals(that.review) : that.review != null) return false;
