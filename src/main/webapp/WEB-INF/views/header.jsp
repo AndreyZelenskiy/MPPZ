@@ -1,11 +1,10 @@
 <%--
   Created by IntelliJ IDEA.
   User: talizorah
-  Date: 16.18.4
-  Time: 18:17
+  Date: 16.26.4
+  Time: 20:57
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,19 +15,13 @@
 </head>
 <body>
 
-
-
-<div class="container">
-    <%@include file="header.jsp"%>
-    <div class="col-md-12">
-        <div  style="text-align: center">
-            <h1> Єдиний реєстр методик судових експертиз України</h1>
-        </div>
-    </div>
-    <br>
-    <br>
-    <br>
-</div>
-
+<c:url value="/login" var="login" />
+<c:url value="/methods/show" var="showMethods"/>
+<c:url value="/mainpage" var="showMainpage"/>
+<ul>
+    <li><a href="${showMainpage}">Головна</a></li>
+    <li><a href="${showMethods}">Методики</a></li>
+    <li style="float:right"><a href="${login}">Вхід в систему</a></li>
+</ul>
 </body>
 </html>

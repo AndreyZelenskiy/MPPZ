@@ -16,15 +16,11 @@
 </head>
 <body>
 
-<c:url value="/login" var="methodShow" />
+
 
 <div class="container">
+    <%@include file="header.jsp"%>
     <div class="col-md-12">
-        <ul>
-            <li><a>Home</a></li>
-            <li><a>News</a></li>
-            <li style="float:right"><a href="${methodShow}">Вхід в систему</a></li>
-        </ul>
         <div  style="text-align: center">
             <h1> Єдиний реєстр методик судових експертиз України</h1>
         </div>

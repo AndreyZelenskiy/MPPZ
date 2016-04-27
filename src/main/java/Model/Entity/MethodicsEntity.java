@@ -39,8 +39,6 @@ public class MethodicsEntity {
 
     @Basic
     @Column(name = "nameOfMethodic")
-    @NotNull(message = "Enter the name")
-   // @Size(min = 3, message = "Enter the name")
     @Size(min=3, message = "Min size is 3")
     public String getNameOfMethodic() {
         return nameOfMethodic;
