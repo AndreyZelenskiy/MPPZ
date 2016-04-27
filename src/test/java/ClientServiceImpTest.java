@@ -24,11 +24,11 @@ public class ClientServiceImpTest {
 
     @Test
     public void testClientRegistration(){
-        String name = "bogdan";
-        String password = "bogdan";
+        String name = "admin";
+        String password = "123";
         String firstname = "name";
         String secondName = "second";
-        List<Role> list = new ArrayList<Role>(Arrays.asList(Role.DEVELOPER, Role.JUCTICE_WORKER));
+        List<Role> list = new ArrayList<Role>(Arrays.asList(Role.JUCTICE_WORKER));
         assertTrue(clientService.registration(name, password, firstname, secondName, list));
     }
 

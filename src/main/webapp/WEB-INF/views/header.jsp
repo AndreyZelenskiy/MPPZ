@@ -18,9 +18,11 @@
 <c:url value="/login" var="login" />
 <c:url value="/methods/show" var="showMethods"/>
 <c:url value="/mainpage" var="showMainpage"/>
+<c:url value="/admin/private" var="privatePage"/>
 <ul>
     <li><a href="${showMainpage}">Головна</a></li>
     <li><a href="${showMethods}">Методики</a></li>
+    <li><a href="${privatePage}">Особистий кабінет</a> </li>
     <li style="float:right"><a href="${login}">Вхід в систему</a></li>
 </ul>
 </body>

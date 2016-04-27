@@ -20,7 +20,7 @@ import javax.validation.Valid;
  * Created by talizorah on 16.19.4.
  */
 @Controller
-@RequestMapping("admin/methodic")
+@RequestMapping("admin/dev")
 @SessionAttributes(value = {"MethodicsEntity"})
 public class MethodicController {
 
