@@ -12,6 +12,7 @@ public class QueriesEntity {
     private MethodicsEntity method;
     private CoordinationResultsEntity coordinationResult;
     private TypeOfQuery type;
+    private boolean complete;
 
     @Id
     @Column(name = "idQuery")
@@ -69,5 +70,14 @@ public class QueriesEntity {
 
     public void setType(TypeOfQuery type) {
         this.type = type;
+    }
+
+    @Transient
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 }

@@ -14,6 +14,7 @@ public class PackagesEntity {
     private MethodicsEntity method;
     private JucticeResultEntity jucticeResult;
     private TypeOfQuery type;
+    private boolean complete;
 
     @Id
     @Column(name = "idPackage")
@@ -93,5 +94,14 @@ public class PackagesEntity {
         int result = idPackage;
         result = 31 * result + (review != null ? review.hashCode() : 0);
         return result;
+    }
+
+    @Transient
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 }

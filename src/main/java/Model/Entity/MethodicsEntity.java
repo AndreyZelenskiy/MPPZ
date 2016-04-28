@@ -1,7 +1,6 @@
 package Model.Entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
@@ -17,6 +16,7 @@ public class MethodicsEntity {
     private String nameOfMethodic;
     private String methodicText;
     private Date creatingDate;
+    private List<ClientsEntity> author;
 
     public MethodicsEntity(){}
 
@@ -46,6 +46,15 @@ public class MethodicsEntity {
 
     public void setNameOfMethodic(String nameOfMethodic) {
         this.nameOfMethodic = nameOfMethodic;
+    }
+
+    @ManyToMany(mappedBy = "methodics")
+    public List<ClientsEntity> getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(List<ClientsEntity> author) {
+        this.author = author;
     }
 
     @Basic
