@@ -1,5 +1,6 @@
 package Model.Service;
 
+import Model.Entity.CoordinationResultsEntity;
 import Model.Entity.MethodicsEntity;
 import Model.Entity.QueriesEntity;
 import org.springframework.stereotype.Service;
@@ -14,4 +15,5 @@ public interface CoordinatorService {
     List<QueriesEntity> getUncheckedQueries();
     boolean checkQuery(QueriesEntity entity);
 //    String getReview(MethodicsEntity entity);
+    QueriesEntity setResult(String name, CoordinationResultsEntity resultsEntity);
 }

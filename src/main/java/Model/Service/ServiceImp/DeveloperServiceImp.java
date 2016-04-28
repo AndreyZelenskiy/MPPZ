@@ -1,8 +1,11 @@
 package Model.Service.ServiceImp;
 
+import Model.Entity.MethodType;
 import Model.Entity.MethodicsEntity;
+import Model.Entity.TypeOfQuery;
 import Model.Repository.MethodicsRepository;
 import Model.Service.DeveloperService;
+import Model.Service.QueryService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -17,12 +20,16 @@ public class DeveloperServiceImp implements DeveloperService {
     @Inject
     MethodicsRepository methodicsRepository;
 
+    @Inject
+    QueryService queryService;
+
     public String createMethod(MethodicsEntity entity) {
         if(methodicsRepository.getMethodicByNameOfMethodic(entity.getNameOfMethodic()).size() == 0){
                 Date date = new Date();
                 java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                 entity.setCreatingDate(sqlDate);
                 methodicsRepository.save(entity);
+                queryService.createQuery(entity, TypeOfQuery.ADD);
                 return "Success";
         }
         return "Such name is already in use";
@@ -67,13 +74,5 @@ public class DeveloperServiceImp implements DeveloperService {
             methodicsRepository.delete(methodicsEntity);
             return true;
         }
-    }
-
-    public void checkResults(MethodicsEntity entity) {
-
-    }
-
-    public void getMessage(String result) {
-
     }
 }

@@ -16,7 +16,8 @@
 </head>
 <body>
     <div class="container">
-        <form:form method="post" modelAttribute="MethodicsEntity" action="/admin/methodic/create">
+        <%@include file="devheader.jsp" %>
+        <form:form method="post" modelAttribute="MethodicsEntity" action="/admin/dev/create">
             <div class="row" style="text-align: center">
                 <div class="col-lg-12 col-lg-offset-5" style="text-align: center">
                     <div class="input-group">
@@ -32,7 +33,7 @@
                         <form:errors path="methodicText" cssClass="has-error" />
                     </div>
                     <div style="text-align:center;">
-                        <button class="btn btn-success" type="submit">
+                        <button class="btn btn-primary" type="submit">
                             Далі
                         </button>
                     </div>

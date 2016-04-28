@@ -11,28 +11,27 @@
 <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link rel='stylesheet' href='/webjars/bootstrap/3.1.0/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="/resources/css/myStyleMethod.css">
+    <link rel="stylesheet" href="/resources/methodView.css">
     <title>Title</title>
 </head>
 <body>
     <div class="container">
         <%@include file="header.jsp"%>
+        <table style="margin-top: 30px">
+            <tr>
+                <th>Назва методики</th>
+                <th>Текст методики</th>
+                <th>Дата створення</th>
+            </tr>
             <c:forEach items="${methods}" var="methods">
-                <div class="col-md-12">
-                    <br>
-                    <div class="col-md-1">
-                    </div>
-                    <div class="col-md-11">
-                        <c:out value="Назва методики: ${methods.nameOfMethodic}"/>
-                        <div class="col-md-12">
-                            <c:out value="Текст методики: ${methods.methodicText}"/>
-                        </div>
-                        <div class="col-md-12">
-                            <c:out value="Дата створення: ${methods.creatingDate}"/>
-                        </div>
-                    </div>
-                </div>
+                <tr>
+                    <td><c:out value="${methods.nameOfMethodic}"/></td>
+                    <td><c:out value="${methods.methodicText}"/></td>
+                    <td><c:out value="${methods.creatingDate}"/></td>
+                </tr>
             </c:forEach>
+        </table>
+
     </div>
 </body>
 </html>

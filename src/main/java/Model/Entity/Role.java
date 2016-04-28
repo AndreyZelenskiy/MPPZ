@@ -5,7 +5,7 @@ package Model.Entity;
  */
 public enum Role {
     DEVELOPER,
-    JUCTICE_WORKER,
-    COORDINATION_WORKER
+    COORDINATION_WORKER,
+    JUCTICE_WORKER
 }
 

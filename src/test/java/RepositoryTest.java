@@ -115,6 +115,5 @@ public class RepositoryTest {
             queriesRepository.delete(entity);
         }
     }
-
 }
 
