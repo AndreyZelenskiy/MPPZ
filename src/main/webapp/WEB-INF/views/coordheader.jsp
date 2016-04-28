@@ -18,13 +18,12 @@
 <c:url value="/methods/show" var="showMethods"/>
 <c:url value="/mainpage" var="showMainpage"/>
 <c:url value="/logout" var="logout"/>
-<div class="container">
-    <ul>
-        <li><a href="${showMainpage}">Головна</a></li>
-        <li><a href="${showMethods}">Методики</a></li>
-        <li style="float:right"><a href="${logout}">Вихід з системи</a></li>
-    </ul>
-    JUSTICE
-</div>
+<c:url value="/admin/coord/queries" var="showQueries"/>
+<ul>
+    <li><a href="${showMainpage}">Головна</a></li>
+    <li><a href="${showMethods}">Методики</a></li>
+    <li><a href="${showQueries}">Запити</a></li>
+    <li style="float:right"><a href="${logout}">Вихід з системи</a></li>
+</ul>
 </body>
 </html>

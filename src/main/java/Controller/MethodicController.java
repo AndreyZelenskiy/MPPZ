@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.naming.Binding;
@@ -26,6 +27,7 @@ public class MethodicController {
 
     @Inject
     DeveloperService developerService;
+
 
     @ModelAttribute("MethodicsEntity")
     public MethodicsEntity methodicModel(){
@@ -45,6 +47,14 @@ public class MethodicController {
             return "methodicCreationPage";
         String str = developerService.createMethod(methodicsEntity);
         map.put("createResult", str);
-        return "redirect:/";
+        return "methodicCreationPage";
     }
+
+    @RequestMapping(value = "/queries", method = RequestMethod.GET)
+    public String showQueries(ModelMap mav){
+
+        return "queryViewPage";
+    }
+
+
 }

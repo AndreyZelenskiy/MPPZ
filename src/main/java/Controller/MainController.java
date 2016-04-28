@@ -29,4 +29,9 @@ public class MainController {
         return "loginpage";
     }
 
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
+    public String logout(ModelAndView mav){
+        return "mainpage";
+    }
+
 }

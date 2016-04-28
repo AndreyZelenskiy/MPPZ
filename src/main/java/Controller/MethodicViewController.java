@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Repository.MethodicsRepository;
+import Model.Service.RegisterService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +18,11 @@ import javax.inject.Inject;
 public class MethodicViewController {
 
     @Inject
-    MethodicsRepository methodicsRepository;
+    RegisterService registerService;
 
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     public String showMethodicsPage(ModelMap map){
-        map.put("methods", methodicsRepository.findAll());
+        map.put("methods",registerService.getMethodsFromRegister());
         return "methodicsViewPage";
     }
 

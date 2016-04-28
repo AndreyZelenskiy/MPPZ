@@ -24,7 +24,7 @@ public class ClientServiceImpTest {
 
     @Test
     public void testClientRegistration(){
-        String name = "admin";
+        String name = "just";
         String password = "123";
         String firstname = "name";
         String secondName = "second";

@@ -1,9 +1,11 @@
 package Model.Service.ServiceImp;
 
+import Model.Entity.CoordinationResultsEntity;
 import Model.Entity.MethodicsEntity;
 import Model.Entity.QueriesEntity;
 import Model.Entity.TypeOfQuery;
 import Model.Repository.CoordinationResultRepository;
+import Model.Repository.MethodicsRepository;
 import Model.Repository.QueriesRepository;
 import Model.Service.CoordinatorService;
 import org.springframework.stereotype.Service;
@@ -21,34 +23,28 @@ public class CoordinationServiceImp implements CoordinatorService {
     @Inject
     QueriesRepository repository;
 
+
+    public QueriesEntity setResult(String name, CoordinationResultsEntity resultsEntity) {
+        List<QueriesEntity> queriesEntity = repository.findAll();
+        for(QueriesEntity query: queriesEntity){
+            if(query.getMethod().getNameOfMethodic().equals(name)){
+                query.setCoordinationResult(resultsEntity);
+                repository.save(query);
+                return query;
+            }
+        }
+        return null;
+    }
+
     public List<QueriesEntity> getUncheckedQueries() {
-        List<QueriesEntity> list = getAddQueries();
-        list.addAll(getEditQueries());
-        list.addAll(getStopQueries());
-
+        List<QueriesEntity> list = repository.findAll();
         List<QueriesEntity> result = new ArrayList<QueriesEntity>();
-
         for(QueriesEntity query : list){
-            //adding to result list elements which doesn't have result text
-            if(query.getCoordinationResult().getResultText()==null){
+            if(query.getCoordinationResult() == null){
                 result.add(query);
             }
         }
         return result;
-
-
-        //repository.getCoordinationResultByResultText("");
-    }
-
-    //methods for getting specific queries
-    private List<QueriesEntity> getAddQueries(){
-        return repository.getQueriesByType(TypeOfQuery.ADD);
-    }
-    private List<QueriesEntity> getEditQueries(){
-        return repository.getQueriesByType(TypeOfQuery.EDIT);
-    }
-    private List<QueriesEntity> getStopQueries(){
-        return repository.getQueriesByType(TypeOfQuery.STOP);
     }
 
 
@@ -60,8 +56,4 @@ public class CoordinationServiceImp implements CoordinatorService {
         else return false;
     }
 
-//    public String getReview(MethodicsEntity entity) {
-//        List<QueriesEntity> list = repository.findAll();
-//
-//    }
 }

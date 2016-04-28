@@ -1,6 +1,7 @@
 package Model.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 /**
@@ -32,6 +33,7 @@ public class CoordinationResultsEntity {
 
     @Basic
     @Column(name = "resultText")
+    @Size(min = 3, message = "Min size is 3")
     public String getResultText() {
         return resultText;
     }
