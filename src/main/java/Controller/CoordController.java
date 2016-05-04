@@ -38,11 +38,12 @@ public class CoordController {
     public String createPack(@Valid @ModelAttribute("CoordinationResultsEntity")
             CoordinationResultsEntity entity, BindingResult result,
                              @RequestParam("queryName")String name,
+                             @RequestParam("action")String action,
             ModelMap map){
         if(result.hasErrors()){
-            return "coordQueriespage";
+            return "redirect:/admin/coord/queries";
         }
-        coordinatorService.setResult(name, entity);
-        return "coordQueriespage";
+        coordinatorService.setResult(name, entity, action);
+        return "redirect:/admin/coord/queries";
     }
 }

@@ -15,5 +15,5 @@ public interface CoordinatorService {
     List<QueriesEntity> getUncheckedQueries();
     boolean checkQuery(QueriesEntity entity);
 //    String getReview(MethodicsEntity entity);
-    QueriesEntity setResult(String name, CoordinationResultsEntity resultsEntity);
+    QueriesEntity setResult(String name, CoordinationResultsEntity resultsEntity, String action);
 }

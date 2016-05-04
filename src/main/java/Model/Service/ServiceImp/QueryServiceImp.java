@@ -24,6 +24,7 @@ public class QueryServiceImp implements QueryService {
         queriesEntity.setType(typeOfQuery);
         queriesEntity.setMethod(entity);
         queriesEntity.setCoordinationResult(null);
+        queriesEntity.setComplete(false);
         queriesRepository.save(queriesEntity);
     }
 }

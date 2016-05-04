@@ -8,6 +8,7 @@ import Model.Repository.CoordinationResultRepository;
 import Model.Repository.MethodicsRepository;
 import Model.Repository.QueriesRepository;
 import Model.Service.CoordinatorService;
+import Model.Service.PackageService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -23,13 +24,23 @@ public class CoordinationServiceImp implements CoordinatorService {
     @Inject
     QueriesRepository repository;
 
+    @Inject
+    PackageService packageService;
 
-    public QueriesEntity setResult(String name, CoordinationResultsEntity resultsEntity) {
+    public QueriesEntity setResult(String name, CoordinationResultsEntity resultsEntity, String act) {
         List<QueriesEntity> queriesEntity = repository.findAll();
         for(QueriesEntity query: queriesEntity){
             if(query.getMethod().getNameOfMethodic().equals(name)){
                 query.setCoordinationResult(resultsEntity);
-                repository.save(query);
+                if(act.equals("confirm")) {
+                    query.setComplete(true);
+                    repository.save(query);
+                    packageService.createPackage(query.getMethod(), resultsEntity, query.getType(), null);
+                }
+                else{
+                    repository.save(query);
+                    query.setComplete(false);
+                }
                 return query;
             }
         }
