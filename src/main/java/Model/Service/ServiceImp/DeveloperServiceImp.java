@@ -3,6 +3,7 @@ package Model.Service.ServiceImp;
 import Model.Entity.MethodType;
 import Model.Entity.MethodicsEntity;
 import Model.Entity.TypeOfQuery;
+import Model.Repository.ClientsRepository;
 import Model.Repository.MethodicsRepository;
 import Model.Service.DeveloperService;
 import Model.Service.QueryService;
@@ -21,18 +22,26 @@ public class DeveloperServiceImp implements DeveloperService {
     MethodicsRepository methodicsRepository;
 
     @Inject
+    ClientsRepository clientsRepository;
+
+    @Inject
     QueryService queryService;
 
-    public String createMethod(MethodicsEntity entity) {
-        if(methodicsRepository.getMethodicByNameOfMethodic(entity.getNameOfMethodic()).size() == 0){
-                Date date = new Date();
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                entity.setCreatingDate(sqlDate);
-                methodicsRepository.save(entity);
-                queryService.createQuery(entity, TypeOfQuery.ADD);
-                return "Success";
+    public String createMethod(String name, String type, String text, String dev) {
+        MethodicsEntity entity = new MethodicsEntity();
+        if(methodicsRepository.getMethodicByNameOfMethodic(name).size() == 0){
+            Date date = new Date();
+            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+            entity.setNameOfMethodic(name);
+            entity.setCreatingDate(sqlDate);
+            entity.setMethodicText(text);
+            entity.setMethodType(MethodType.valueOf(type).ordinal());
+            entity.setAuthor(clientsRepository.getClientsEntityByLogin(dev));
+            methodicsRepository.save(entity);
+            queryService.createQuery(entity, TypeOfQuery.ADD);
+            return "Створення було успішним";
         }
-        return "Such name is already in use";
+        return "Така назва вже використовується";
     }
 
     public MethodicsEntity addMethod(String name, String text) {

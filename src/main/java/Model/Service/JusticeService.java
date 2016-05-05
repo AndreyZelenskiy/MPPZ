@@ -1,5 +1,6 @@
 package Model.Service;
 
+import Model.Entity.JucticeResultEntity;
 import Model.Entity.PackagesEntity;
 import Model.Entity.QueriesEntity;
 
@@ -12,5 +13,6 @@ public interface JusticeService {
     List<PackagesEntity> getUncheckedPackages();
     //List<QueriesEntity> getRegisterQueries();
     //boolean checkPackage(PackagesEntity entity);
-    boolean addToRegister(PackagesEntity entity);
+    String addToRegister(PackagesEntity entity, JucticeResultEntity resultEntity);
+    PackagesEntity getPackage(String name);
 }

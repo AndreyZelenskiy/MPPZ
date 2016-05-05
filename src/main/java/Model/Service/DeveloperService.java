@@ -15,6 +15,6 @@ public interface DeveloperService {
     boolean editMethod(String name, String newText);
     boolean deleteMethod(String name);
 
-    String createMethod(MethodicsEntity entity);
+    String createMethod(String name, String type, String text, String dev);
 
 }

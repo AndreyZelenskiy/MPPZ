@@ -72,7 +72,8 @@ public class QueriesEntity {
         this.type = type;
     }
 
-    @Transient
+    @Basic
+    @Column(name = "accepted")
     public boolean isComplete() {
         return complete;
     }

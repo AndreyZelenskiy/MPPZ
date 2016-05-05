@@ -17,6 +17,7 @@ public class MethodicsEntity {
     private String methodicText;
     private Date creatingDate;
     private List<ClientsEntity> author;
+    private int methodType;
 
     public MethodicsEntity(){}
 
@@ -39,7 +40,7 @@ public class MethodicsEntity {
 
     @Basic
     @Column(name = "nameOfMethodic")
-    @Size(min=3, message = "Min size is 3")
+    @Size(min=3, message = "Мінімальний розмір назви - 3 символи!")
     public String getNameOfMethodic() {
         return nameOfMethodic;
     }
@@ -59,8 +60,6 @@ public class MethodicsEntity {
 
     @Basic
     @Column(name = "methodicText")
-    @NotNull(message = "Enter the name")
-    @Size(min=3, message = "The min size is 3")
    // @Size(min = 3, message = "Enter the name")
     public String getMethodicText() {
         return methodicText;
@@ -68,6 +67,15 @@ public class MethodicsEntity {
 
     public void setMethodicText(String methodicText) {
         this.methodicText = methodicText;
+    }
+
+    @Basic
+    @Column(name = "methodType")
+    public int getMethodType(){
+        return methodType;
+    }
+    public void setMethodType(int methodType){
+        this.methodType = methodType;
     }
 
     @Basic

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Entity.MethodType;
 import Model.Repository.MethodicsRepository;
 import Model.Service.RegisterService;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ public class MethodicViewController {
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     public String showMethodicsPage(ModelMap map){
         map.put("methods",registerService.getMethodsFromRegister());
+        map.put("types", MethodType.values());
         return "methodicsViewPage";
     }
 
