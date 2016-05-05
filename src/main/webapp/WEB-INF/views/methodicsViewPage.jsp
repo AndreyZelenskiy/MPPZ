@@ -18,12 +18,14 @@
         <table style="margin-top: 30px">
             <tr>
                 <th>Назва методики</th>
+                <th>Тип методики</th>
                 <th>Текст методики</th>
                 <th>Дата створення</th>
             </tr>
             <c:forEach items="${methods}" var="methods">
                 <tr>
                     <td><c:out value="${methods.nameOfMethodic}"/></td>
+                    <td><c:out value="${types[methods.methodType].toString()}"/></td>
                     <td><c:out value="${methods.methodicText}"/></td>
                     <td><c:out value="${methods.creatingDate}"/></td>
                 </tr>

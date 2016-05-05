@@ -13,6 +13,6 @@ public interface JusticeService {
     List<PackagesEntity> getUncheckedPackages();
     //List<QueriesEntity> getRegisterQueries();
     //boolean checkPackage(PackagesEntity entity);
-    boolean addToRegister(PackagesEntity entity, JucticeResultEntity resultEntity);
+    String addToRegister(PackagesEntity entity, JucticeResultEntity resultEntity);
     PackagesEntity getPackage(String name);
 }

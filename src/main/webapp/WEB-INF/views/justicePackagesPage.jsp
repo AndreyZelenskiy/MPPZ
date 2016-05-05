@@ -1,4 +1,5 @@
-<%--
+<%@ page import="Model.Entity.PackagesEntity" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: talizorah
   Date: 16.4.5
@@ -13,25 +14,90 @@
     <title>Title</title>
 </head>
 <body>
+<% String errorMessage = (String)request.getAttribute("resultText"); %>
 <div class="container">
     <%@include file="justiceheader.jsp"%>
+    <div class="col-md-12">
+        <div  style="text-align: center">
+            <h1>Неопрацьовані запити: </h1>
+        </div>
+    </div>
+    <% List<PackagesEntity> queriesEntityList = (List<PackagesEntity>)request.getAttribute("dataSource");
+        if( queriesEntityList.size() == 0){%>
+    <div class="col-md-12">
+        <div  style="text-align: center">
+            <h4>Нові запити відсутні </h4>
+        </div>
+    </div>
+    <% } %>
+    <div>
+        <%
+            if(errorMessage != null){
+        %>
+        <div class="col-md-12" style="width: 66%;">
+            <h4>
+                <%=errorMessage%>
+            </h4>
+        </div>
+        <% } %>
+    </div>
     <c:forEach items="${dataSource}" var="dataSource">
         <div class="col-md-12">
             <br>
             <div class="col-md-12">
-                <c:out value="Назва методики: ${dataSource.getMethod().nameOfMethodic}"/>
-                <div class="col-md-12">
-                    <c:out value="Текст методики: ${dataSource.getMethod().methodicText}"/>
+                <div class="col-md-12" style="display:flex;">
+                    <div class="col-md-2" style="font-weight: bold">
+                        Назва методики:
+                    </div>
+                    <div class="col-md-10">
+                        <c:out value="${dataSource.getMethod().nameOfMethodic}"/>
+                    </div>
                 </div>
-                <div class="col-md-12">
-                    <c:out value="Дата створення: ${dataSource.getMethod().creatingDate}"/>
+                <div class="col-md-12" style="display:flex;">
+                    <div class="col-md-2" style="font-weight: bold">
+                        Тип методики:
+                    </div>
+                    <div class="col-md-10">
+                        <c:out value="${dataSource.getMethod().methodType}"/>
+                    </div>
+                </div>
+                <div class="col-md-12" style="display:flex;">
+                    <div class="col-md-2" style="font-weight: bold">
+                        Текст методики:
+                    </div>
+                    <div class="col-md-10">
+                        <c:out value="${dataSource.getMethod().methodicText}"/>
+                    </div>
+                </div>
+                <div class="col-md-12" style="display:flex;">
+                    <div class="col-md-2" style="font-weight: bold">
+                        Дата створення:
+                    </div>
+                    <div class="col-md-10">
+                        <c:out value="${dataSource.getMethod().creatingDate}"/>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+
+                <div class="col-md-12" style="display:flex;">
+                    <div class="col-md-3" style="font-weight: bold">
+                       Оцінка координаційної ради:
+                    </div>
+                    <div class="col-md-9">
+                        <c:out value="${dataSource.getCoordinationResult().resultText}"/>
+                    </div>
+                    <br>
+                    <br>
                 </div>
                 <br>
                 <form:form method="post" modelAttribute="JucticeResultEntity" action="/admin/just/confirm">
                     <div class="row">
+
                         <input type="hidden" name="queryName" value="${dataSource.getMethod().nameOfMethodic}">
                         <div class="input-group">
-                            <form:input type="text" path="resultText" class="form-control" placeholder="Оцінка"/>
+                            <label for="message">Оцінка методики: </label>
+                            <form:input type="text" id="message" path="resultText" class="form-control" placeholder="Оцінка"/>
                         </div>
                         <div class="input-group">
                             <form:errors path="resultText" cssClass="has-error" />
@@ -43,7 +109,7 @@
                                     Прийняти
                                 </button>
                             </div>
-                            <div style="margin-left: 40px;">
+                            <div style="margin-left: 120px;">
                                 <button class="btn btn-primary" type="submit" name="action" value="decline">
                                     Відхилити
                                 </button>

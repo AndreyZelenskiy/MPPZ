@@ -27,7 +27,7 @@ public class CoordinationServiceImp implements CoordinatorService {
     @Inject
     PackageService packageService;
 
-    public QueriesEntity setResult(String name, CoordinationResultsEntity resultsEntity, String act) {
+    public String setResult(String name, CoordinationResultsEntity resultsEntity, String act) {
         List<QueriesEntity> queriesEntity = repository.findAll();
         for(QueriesEntity query: queriesEntity){
             if(query.getMethod().getNameOfMethodic().equals(name)){
@@ -36,12 +36,13 @@ public class CoordinationServiceImp implements CoordinatorService {
                     query.setComplete(true);
                     repository.save(query);
                     packageService.createPackage(query.getMethod(), resultsEntity, query.getType(), null);
+                    return "Методики перевірена і відправлена Міністерству Юстицій України";
                 }
                 else{
                     repository.save(query);
                     query.setComplete(false);
+                    return "Методика була відхилена";
                 }
-                return query;
             }
         }
         return null;

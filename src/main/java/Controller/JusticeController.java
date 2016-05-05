@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Entity.CoordinationResultsEntity;
 import Model.Entity.JucticeResultEntity;
+import Model.Entity.MethodType;
 import Model.Entity.PackagesEntity;
 import Model.Repository.JusticeResultRepository;
 import Model.Repository.PackagesRepository;
@@ -38,10 +39,13 @@ public class JusticeController {
     @Inject
     JusticeResultRepository resultRepository;
 
+    private String resultText;
 
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     public String showPackages(ModelMap map) {
         map.put("dataSource", justiceService.getUncheckedPackages());
+        map.put("resultText", resultText);
+        resultText = null;
         return "justicePackagesPage";
     }
 
@@ -52,14 +56,23 @@ public class JusticeController {
                                  @RequestParam("action")String action,
                                  ModelMap map){
         if(result.hasErrors()){
+            resultText = "Поле ОЦІНКА повинне бути заповненим";
             return "redirect:/admin/just/show";
         }
-        resultRepository.save(resultEntity);
-        PackagesEntity entity = justiceService.getPackage(name);
-        entity.setReview(resultEntity.getResultText());
-        packagesRepository.save(entity);
-        if(action.equals("confirm")){
-            justiceService.addToRegister(justiceService.getPackage(name), resultEntity);
+        if(resultEntity.getResultText().length() < 1){
+            resultText = "Поле ОЦІНКА повинне бути заповненим";
+        }
+        else{
+            resultRepository.save(resultEntity);
+            PackagesEntity entity = justiceService.getPackage(name);
+            entity.setReview(resultEntity.getResultText());
+            packagesRepository.save(entity);
+            if(action.equals("confirm")){
+                resultText = justiceService.addToRegister(justiceService.getPackage(name), resultEntity);
+            }
+            else{
+                resultText = "Методика була відхилена рішенням Міністерства Юстицій України";
+            }
         }
         return "redirect:/admin/just/show";
     }

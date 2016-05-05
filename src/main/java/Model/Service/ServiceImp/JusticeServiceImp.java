@@ -49,8 +49,7 @@ public class JusticeServiceImp implements JusticeService {
     }
 
 
-    public boolean addToRegister(PackagesEntity entity, JucticeResultEntity resultEntity) {
-
+    public String addToRegister(PackagesEntity entity, JucticeResultEntity resultEntity) {
         RegistrEntity newInstance = new RegistrEntity();
         newInstance.setMethod(entity.getMethod());
 
@@ -60,6 +59,6 @@ public class JusticeServiceImp implements JusticeService {
         newInstance.setEndDate(date);
         newInstance.setEditDate(null);
         registrRepository.save(newInstance);
-        return true;
+        return "Методика успішно внесена в реєстр";
     }
 }
