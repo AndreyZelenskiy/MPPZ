@@ -36,9 +36,9 @@
                     <label for="select">Виберіть тип методики: </label>
                     <div style="width: 200px" id="select">
                         <select name="methodType">
-                            <option value="FIRST">Комплексна експертиза</option>
-                            <option value="SECOND">Почеркознавча</option>
-                            <option value="THIRD">Технічна</option>
+                            <option value="Complex">Комплексна експертиза</option>
+                            <option value="Write">Почеркознавча</option>
+                            <option value="Technic">Технічна</option>
                         </select>
                     </div>
                     <br>
