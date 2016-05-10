@@ -96,7 +96,8 @@ public class PackagesEntity {
         return result;
     }
 
-    @Transient
+    @Basic
+    @Column(name = "accepted")
     public boolean isComplete() {
         return complete;
     }

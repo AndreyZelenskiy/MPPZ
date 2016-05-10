@@ -1,4 +1,5 @@
-<%--
+<%@ page import="Model.Entity.MethodicsEntity" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: talizorah
   Date: 16.8.5
@@ -27,7 +28,7 @@
                 <input type="text" id="nameLabel" class="form-control" name="methodName" placeholder="Назва методики">
             </div>
             <div class="col-md-4 col-md-offset-2">
-                <input type="checkbox" name="formDoor[]" value="Complex" />Комплексна експертиза<br />
+                <input type="checkbox" checked="true" name="formDoor[]" value="Complex" />Комплексна експертиза<br />
                 <input type="checkbox" name="formDoor[]" value="Write" />Почеркознавча експертиза<br />
                 <input type="checkbox" name="formDoor[]" value="Technic" />Технічна експертиза<br />
                 <div align="left">
@@ -55,6 +56,15 @@
                 </tr>
             </c:forEach>
         </table>
+        <% List<MethodicsEntity> queriesEntityList = (List<MethodicsEntity>)request.getAttribute("result");
+            if(queriesEntityList != null)
+                if(queriesEntityList.size() == 0){%>
+        <div class="col-md-12">
+            <div  style="text-align: center">
+                <h4>По вашому запиту результат відсутній</h4>
+            </div>
+        </div>
+        <% } %>
     </div>
 </div>
 </body>

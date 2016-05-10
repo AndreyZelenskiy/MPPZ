@@ -12,17 +12,22 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <link rel='stylesheet' href='/webjars/bootstrap/3.1.0/css/bootstrap.min.css'>
     <link rel="stylesheet" href="/resources/css/navbar.css">
+    <link rel="stylesheet" href="/resources/methodView.css">
 </head>
 <body>
 <c:url value="/methods/show" var="showMethods"/>
 <c:url value="/mainpage" var="showMainpage"/>
 <c:url value="/admin/just/show" var="showPackages"/>
 <c:url value="/logout" var="logout"/>
+<c:url value="/admin/just/declined" var="declined"/>
+<c:url value="/admin/just/delete" var="delete"/>
 <div class="container">
     <ul>
         <li><a href="${showMainpage}">Головна</a></li>
         <li><a href="${showMethods}">Методики</a></li>
         <li><a href="${showPackages}">Запити</a></li>
+        <li><a href="${declined}">Відхилені</a></li>
+        <li><a href="${delete}">Видалення</a></li>
         <li style="float:right"><a href="${logout}">Вихід з системи</a></li>
     </ul>
 </div>

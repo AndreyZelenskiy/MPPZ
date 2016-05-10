@@ -20,7 +20,7 @@
 
 <div class="container">
     <%@include file="header.jsp"%>
-    <div class="col-md-12">
+    <div class="col-md-12" style="margin-top: 200px;">
         <div  style="text-align: center">
             <h1> Єдиний реєстр методик судових експертиз України</h1>
         </div>

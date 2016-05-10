@@ -1,4 +1,5 @@
-<%--
+<%@ page import="Model.Entity.MethodicsEntity" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: talizorah
   Date: 16.26.4
@@ -31,6 +32,14 @@
                 </tr>
             </c:forEach>
         </table>
+        <% List<MethodicsEntity> queriesEntityList = (List<MethodicsEntity>)request.getAttribute("methods");
+            if( queriesEntityList.size() == 0){%>
+        <div class="col-md-12">
+            <div  style="text-align: center">
+                <h4>Запиcи в реєстрі відсутні</h4>
+            </div>
+        </div>
+        <% } %>
     </div>
 </body>
 </html>

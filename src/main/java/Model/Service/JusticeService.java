@@ -15,4 +15,5 @@ public interface JusticeService {
     //boolean checkPackage(PackagesEntity entity);
     String addToRegister(PackagesEntity entity, JucticeResultEntity resultEntity);
     PackagesEntity getPackage(String name);
+    String deleteFromRegistr(String name);
 }
