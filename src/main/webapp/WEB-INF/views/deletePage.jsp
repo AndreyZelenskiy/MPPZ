@@ -31,7 +31,7 @@
                 <td><c:out value="${result.getMethod().creatingDate}"/></td>
                 <td>
                     <form method="post" action="/admin/just/deleted">
-                        <input type="hidden" name="queryName" value="${result.getMethod().nameOfMethodic}">
+                        <input type="hidden" name="queryName" value="${result.idRegist}">
                         <div>
                             <button class="btn btn-primary" type="submit" name="nameReg">
                                 Видалити
