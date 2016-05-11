@@ -2,9 +2,11 @@ package Model.Service.ServiceImp;
 
 import Model.Entity.MethodType;
 import Model.Entity.MethodicsEntity;
+import Model.Entity.RegistrEntity;
 import Model.Entity.TypeOfQuery;
 import Model.Repository.ClientsRepository;
 import Model.Repository.MethodicsRepository;
+import Model.Repository.RegistrRepository;
 import Model.Service.DeveloperService;
 import Model.Service.QueryService;
 import org.springframework.stereotype.Service;
@@ -27,9 +29,12 @@ public class DeveloperServiceImp implements DeveloperService {
     @Inject
     QueryService queryService;
 
+    @Inject
+    RegistrRepository registrRepository;
+
     public String createMethod(String name, String type, String text, String dev) {
         MethodicsEntity entity = new MethodicsEntity();
-        if(methodicsRepository.getMethodicByNameOfMethodic(name).size() == 0){
+        if(registrRepository.findEntityByMethod_NameOfMethodic(name).size() == 0) {
             Date date = new Date();
             java.sql.Date sqlDate = new java.sql.Date(date.getTime());
             entity.setNameOfMethodic(name);

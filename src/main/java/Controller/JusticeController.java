@@ -94,7 +94,7 @@ public class JusticeController {
         map.put("queries", queriesRepository.findAll());
         List<QueriesEntity> resultCoord = new ArrayList<QueriesEntity>();
         for(QueriesEntity queriesEntity: queriesRepository.findAll()){
-            if(!queriesEntity.isComplete())
+            if(!queriesEntity.isComplete() && queriesEntity.getCoordinationResult() != null)
                 resultCoord.add(queriesEntity);
         }
         map.put("declinedCoord", resultCoord);
