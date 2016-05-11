@@ -49,6 +49,12 @@ public class JusticeServiceImp implements JusticeService {
     }
 
 
+    public String deleteFromRegistr(String name) {
+        RegistrEntity registrEntity = registrRepository.findOne(Integer.valueOf(name));
+        registrRepository.delete(registrEntity);
+        return "Методика успішно видалена";
+    }
+
     public String addToRegister(PackagesEntity entity, JucticeResultEntity resultEntity) {
         RegistrEntity newInstance = new RegistrEntity();
         newInstance.setMethod(entity.getMethod());

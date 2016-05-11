@@ -41,7 +41,7 @@ public class MethodicController {
                                  ModelMap map){
         String str;
         if(nameMethodic.length() < 3){
-            str = "Мінімальний розмір - 3 символи";
+            str = "Мінімальний розмір назви методики - 3 символи";
         }
         else {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

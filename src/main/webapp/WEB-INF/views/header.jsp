@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: talizorah
@@ -20,9 +21,11 @@
 <c:url value="/methods/show" var="showMethods"/>
 <c:url value="/mainpage" var="showMainpage"/>
 <c:url value="/admin/private" var="privatePage"/>
+<c:url value="/search" var="searchPage"/>
 <ul>
     <li><a href="${showMainpage}">Головна</a></li>
     <li><a href="${showMethods}">Методики</a></li>
+    <li><a href="${searchPage}">Пошук</a></li>
     <li><a href="${privatePage}">Особистий кабінет</a> </li>
     <li style="float:right"><a href="${login}">Вхід в систему</a></li>
 </ul>

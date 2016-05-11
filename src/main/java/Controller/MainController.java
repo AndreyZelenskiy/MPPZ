@@ -34,4 +34,9 @@ public class MainController {
         return "mainpage";
     }
 
+    @RequestMapping(value = "search", method = RequestMethod.GET)
+    public String search(ModelAndView mav){
+        return "searchpage";
+    }
+
 }
