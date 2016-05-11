@@ -39,8 +39,8 @@ public class CoordinationServiceImp implements CoordinatorService {
                     return "Методики перевірена і відправлена Міністерству Юстицій України";
                 }
                 else{
-                    repository.save(query);
                     query.setComplete(false);
+                    repository.save(query);
                     return "Методика була відхилена";
                 }
             }
