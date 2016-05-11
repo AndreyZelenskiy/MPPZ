@@ -11,17 +11,23 @@
 <html>
 <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <script src="/resources/css/jquery-1.12.3.min.js"></script>
+    <script src="/resources/sortFunc.js"></script>
+    <script src="/resources/sort.js"></script>
     <title>Title</title>
 </head>
 <body>
     <div class="container">
         <%@include file="header.jsp"%>
+        <div class="col-md-12" style="margin-top: 10px;">
+            <h5>Для сортування використовуйте назви колонок таблиці</h5>
+        </div>
         <table style="margin-top: 30px">
             <tr>
-                <th>Назва методики</th>
-                <th>Тип методики</th>
-                <th>Текст методики</th>
-                <th>Дата створення</th>
+                <th style="cursor: pointer;" id="name">Назва методики</th>
+                <th style="cursor: pointer;" id = "type">Тип методики</th>
+                <th style="cursor: pointer;" id = "text">Текст методики</th>
+                <th style="cursor: pointer;" id = "date">Дата створення</th>
             </tr>
             <c:forEach items="${methods}" var="methods">
                 <tr>

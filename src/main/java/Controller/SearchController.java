@@ -24,14 +24,20 @@ public class SearchController {
     RegistrRepository registrRepository;
 
     @RequestMapping(value = "found", method = RequestMethod.POST)
-    public String getFromRegistr(@RequestParam("formDoor[]")String [] checkBoxData,
+    public String getFromRegistr(@RequestParam(value = "formDoor[]", required = false)String [] checkBoxData,
                                  @RequestParam("methodName")String methodName,
                                  ModelMap map){
         List<RegistrEntity> result = new ArrayList<RegistrEntity>();
-        for(RegistrEntity registrEntity: registrRepository.findAll()) {
-            for (String methodType : checkBoxData) {
-                if (registrEntity.getMethod().getMethodType() == MethodType.valueOf(methodType).ordinal()) {
-                    result.add(registrEntity);
+        List<RegistrEntity> checkBox = registrRepository.findAll();
+        if(checkBoxData == null){
+            result = checkBox;
+        }
+        else{
+            for(RegistrEntity registrEntity: checkBox) {
+                for (String methodType : checkBoxData) {
+                    if (registrEntity.getMethod().getMethodType() == MethodType.valueOf(methodType).ordinal()) {
+                        result.add(registrEntity);
+                    }
                 }
             }
         }
