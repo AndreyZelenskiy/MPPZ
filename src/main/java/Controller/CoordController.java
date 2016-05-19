@@ -34,6 +34,7 @@ public class CoordController {
         map.put("types", MethodType.values());
         map.put("queriesTypes", TypeOfQuery.values());
         map.put("resultText", resultText);
+        map.put("editableMethods", coordinatorService.getEditableMethods());
         resultText = null;
         return "coordQueriespage";
     }

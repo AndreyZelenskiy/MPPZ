@@ -1,5 +1,6 @@
 <%@ page import="Model.Entity.QueriesEntity" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="Model.Entity.TypeOfQuery" %><%--
   Created by IntelliJ IDEA.
   User: talizorah
   Date: 16.28.4
@@ -11,9 +12,11 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="/resources/coordQuery.css">
     <meta charset="UTF-8">
 </head>
 <body>
+<% int cnt=0;%>
 <% String errorMessage = (String)request.getAttribute("resultText"); %>
     <div class="container">
         <%@include file="coordheader.jsp" %>
@@ -42,79 +45,57 @@
             <% } %>
         </div>
         <c:forEach items="${queries}" var="queries">
-            <div class="col-md-12">
-                <br>
-                <div class="col-md-12">
-                    <div class="col-md-12" style="display:flex;">
-                        <div class="col-md-2" style="font-weight: bold">
-                            Назва методики:
+            <div class="container">
+                <div class="container col-md-6">
+                    <div><label form="methodName">Назва методики: </label> <p id="methodName">${queries.getMethod().nameOfMethodic}</p> </div>
+                    <div><label form="methodType">Тип методики: </label> <p id="methodType">${types[queries.getMethod().methodType].toString()}</p> </div>
+                    <div><label form="methodText">Текст методики: </label><br> <p id="methodText">${queries.getMethod().methodicText}</p> </div>
+                    <div><label form="queryType">Тип запиту: </label> <p id="queryType">${queries.type.toString()}</p> </div>
+                    <div><label form="methodDate">Дата створення методики: </label> <p id="methodDate">${queries.getMethod().creatingDate}</p> </div>
+                    <form class="form" method="post" action="/admin/coord/create">
+                        <input type="hidden" name="queryName" value="${queries.getMethod().nameOfMethodic}">
+                        <div class="input-group">
+                            <label   for="message">Оцінка методики: </label>
+                            <input type="text" id="message" name="resultText" class="form-control" placeholder="Оцінка"/>
                         </div>
-                        <div class="col-md-10">
-                            <c:out value="${queries.getMethod().nameOfMethodic}"/>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="display:flex;">
-                        <div class="col-md-2" style="font-weight: bold">
-                            Тип методики:
-                        </div>
-                        <div class="col-md-10">
-                            <c:out value=" ${types[queries.getMethod().methodType].toString()}"/>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="display:flex;">
-                        <div class="col-md-2" style="font-weight: bold">
-                            Текст методики:
-                        </div>
-                        <div class="col-md-10">
-                            <c:out value="${queries.getMethod().methodicText}"/>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="col-md-2" style="font-weight: bold">
-                            Тип запросу:
-                        </div>
-                        <div class="col-md-10">
-                            <c:out value="${queries.type.toString()}"/>
-                        </div>
-                    </div>
-                    <div class="col-md-12" style="display:flex;">
-                        <div class="col-md-2" style="font-weight: bold">
-                            Дата створення:
-                        </div>
-                        <div class="col-md-10">
-                            <c:out value="${queries.getMethod().creatingDate}"/>
-                        </div>
-                        <br>
-                    </div>
-                    <br>
-                    <div class="col-md-12">
-                        <form method="post" action="/admin/coord/create">
-                            <div class="row">
-                                <br>
-                                <input type="hidden" name="queryName" value="${queries.getMethod().nameOfMethodic}">
-                                <div class="input-group">
-                                    <label for="message">Оцінка методики: </label>
-                                    <input type="text" id="message" name="resultText" class="form-control" placeholder="Оцінка"/>
-                                </div>
-                                <br>
-                                <div style="display: flex">
-                                    <div>
-                                        <button class="btn btn-primary" type="submit" name="action" value="confirm">
-                                            Прийняти
-                                        </button>
-                                    </div>
-                                    <div style="margin-left: 120px;">
-                                        <button class="btn btn-primary" type="submit" name="action" value="decline">
-                                            Відхилити
-                                        </button>
-                                    </div>
-                                </div>
-                                <hr>
+                        <div style="display: flex">
+                            <div>
+                                <button class="btn btn-primary" type="submit" name="action" value="confirm">
+                                    Прийняти
+                                </button>
                             </div>
-                        </form>
+                            <div style="margin-left: 120px;">
+                                <button class="btn btn-primary" type="submit" name="action" value="decline">
+                                    Відхилити
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <%if(queriesEntityList.get(cnt).getType() == TypeOfQuery.EDIT){%>
+                <div class="container col-md-6">
+                    <div>
+                        <label form="editableMethodName">Назва методики: </label>
+                        <p id="editableMethodName">${editableMethods.get(cnt).nameOfMethodic}</p>
+                    </div>
+                    <div>
+                        <label form="editableMethodType">Тип методики: </label>
+                        <p id="editableMethodType">${types[editableMethods.get(cnt).methodType].toString()}</p>
+                    </div>
+                    <div>
+                        <label form="editableMethodText">Текст методики: </label>
+                        <p id="editableMethodText">${editableMethods.get(cnt).methodicText}</p>
+                    </div>
+                    <div>
+                        <label form="editableMethodDate">Дата створення методики: </label>
+                        <p id="editableMethodDate">${editableMethods.get(cnt).creatingDate}</p>
                     </div>
                 </div>
+                <%}%>
             </div>
+            <br>
+            <br>
         </c:forEach>
     </div>
 </body>

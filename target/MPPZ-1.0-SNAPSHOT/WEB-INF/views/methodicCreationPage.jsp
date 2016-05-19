@@ -43,7 +43,7 @@
                     </div>
                     <br>
                     <label for="comment">Методика:</label>
-                    <textarea class="form-control" id="comment" name="methodText" rows="5"></textarea>
+                    <textarea class="form-control" id="comment" name="methodText" rows!="5"></textarea>
                     <br>
                     <div align="right">
                         <button class="btn btn-primary" type="submit">
