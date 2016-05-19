@@ -3,6 +3,7 @@ package Controller;
 import Model.Entity.CoordinationResultsEntity;
 import Model.Entity.MethodType;
 import Model.Entity.MethodicsEntity;
+import Model.Entity.TypeOfQuery;
 import Model.Repository.CoordinationResultRepository;
 import Model.Repository.MethodicsRepository;
 import Model.Service.CoordinatorService;
@@ -31,6 +32,7 @@ public class CoordController {
     public String getQueries(ModelMap map){
         map.put("queries", coordinatorService.getUncheckedQueries());
         map.put("types", MethodType.values());
+        map.put("queriesTypes", TypeOfQuery.values());
         map.put("resultText", resultText);
         resultText = null;
         return "coordQueriespage";

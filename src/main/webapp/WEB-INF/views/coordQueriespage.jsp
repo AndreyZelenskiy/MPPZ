@@ -69,6 +69,14 @@
                             <c:out value="${queries.getMethod().methodicText}"/>
                         </div>
                     </div>
+                    <div class="container">
+                        <div class="col-md-2" style="font-weight: bold">
+                            Тип запросу:
+                        </div>
+                        <div class="col-md-10">
+                            <c:out value="${queries.type.toString()}"/>
+                        </div>
+                    </div>
                     <div class="col-md-12" style="display:flex;">
                         <div class="col-md-2" style="font-weight: bold">
                             Дата створення:

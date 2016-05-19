@@ -1,9 +1,6 @@
 package Model.Service.ServiceImp;
 
-import Model.Entity.MethodType;
-import Model.Entity.MethodicsEntity;
-import Model.Entity.RegistrEntity;
-import Model.Entity.TypeOfQuery;
+import Model.Entity.*;
 import Model.Repository.ClientsRepository;
 import Model.Repository.MethodicsRepository;
 import Model.Repository.RegistrRepository;
@@ -41,7 +38,7 @@ public class DeveloperServiceImp implements DeveloperService {
             entity.setCreatingDate(sqlDate);
             entity.setMethodicText(text);
             entity.setMethodType(MethodType.valueOf(type).ordinal());
-            entity.setAuthor(clientsRepository.getClientsEntityByLogin(dev));
+            entity.setAuthor(clientsRepository.getClientsEntityByLogin(dev).get(0));
             methodicsRepository.save(entity);
             queryService.createQuery(entity, TypeOfQuery.ADD);
             return "Створення було успішним";
@@ -49,11 +46,25 @@ public class DeveloperServiceImp implements DeveloperService {
         return "Така назва вже використовується";
     }
 
+    public String editMethod(String name, String type, String text, ClientsEntity developer){
+        MethodicsEntity method = new MethodicsEntity();
+        if(registrRepository.findEntityByMethod_NameOfMethodic(name).size() != 0){
+            java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
+            method.setAuthor(developer);
+            method.setNameOfMethodic(name);
+            method.setCreatingDate(sqlDate);
+            method.setMethodicText(text);
+            method.setMethodType(MethodType.valueOf(type).ordinal());
+            methodicsRepository.save(method);
+            queryService.createQuery(method, TypeOfQuery.EDIT);
+            return "Запит на редагування успішно створено";
+        }else return "Такої назви немає в реєстрі";
+    }
+
     public MethodicsEntity addMethod(String name, String text) {
         if(methodicsRepository.getMethodicByNameOfMethodic(name).size() != 0){
             return null;
-        }
-        else{
+        }else{
             MethodicsEntity methodicsEntity = new MethodicsEntity();
             methodicsEntity.setNameOfMethodic(name);
             methodicsEntity.setMethodicText(text);
