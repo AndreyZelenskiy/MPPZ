@@ -29,12 +29,15 @@ public class CoordinationServiceImp implements CoordinatorService {
     QueriesRepository repository;
 
     @Inject
+    CoordinationResultRepository coordinationResultRepository;
+
+    @Inject
     PackageService packageService;
 
-    public String setResult(String name, CoordinationResultsEntity resultsEntity, String act) {
-        List<QueriesEntity> queriesEntity = getUncheckedQueries();
+    public String setResult(String id, CoordinationResultsEntity resultsEntity, String act) {
+        List<QueriesEntity> queriesEntity = repository.findAll();
         for(QueriesEntity query: queriesEntity){
-            if(query.getMethod().getNameOfMethodic().equals(name)){
+            if(query.getMethod().getIdMethodic() == Integer.valueOf(id)){
                 query.setCoordinationResult(resultsEntity);
                 if(act.equals("confirm")) {
                     query.setComplete(true);

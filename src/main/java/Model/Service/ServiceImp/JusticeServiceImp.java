@@ -27,10 +27,10 @@ public class JusticeServiceImp implements JusticeService {
     @Inject
     JusticeResultRepository resultRepository;
 
-    public PackagesEntity getPackage(String name) {
+    public PackagesEntity getPackage(String id) {
         List<PackagesEntity> entities = packagesRepository.findAll();
         for(PackagesEntity packagesEntity: entities){
-            if(packagesEntity.getMethod().getNameOfMethodic().equals(name)){
+            if(packagesEntity.getMethod().getIdMethodic() == Integer.valueOf(id)){
                 return packagesEntity;
             }
         }
