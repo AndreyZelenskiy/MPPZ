@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<% int cnt=0;%>
+<% int cnt=0;int cnt2=0;%>
 <% String errorMessage = (String)request.getAttribute("resultText"); %>
     <div class="container">
         <%@include file="coordheader.jsp" %>
@@ -73,7 +73,7 @@
                     </form>
                 </div>
 
-                <%if(queriesEntityList.get(cnt).getType() == TypeOfQuery.EDIT){%>
+                <%if(queriesEntityList.get(cnt2).getType() == TypeOfQuery.EDIT){%>
                 <div class="container col-md-6">
                     <div>
                         <label form="editableMethodName">Назва методики: </label>
@@ -92,7 +92,7 @@
                         <p id="editableMethodDate">${editableMethods.get(cnt).creatingDate}</p>
                     </div>
                 </div>
-                <%}%>
+                <%cnt++;}cnt2++;%>
             </div>
             <br>
             <br>

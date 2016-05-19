@@ -1,6 +1,7 @@
 package Model.Service;
 
 import Model.Entity.JucticeResultEntity;
+import Model.Entity.MethodicsEntity;
 import Model.Entity.PackagesEntity;
 import Model.Entity.QueriesEntity;
 
@@ -16,4 +17,8 @@ public interface JusticeService {
     String addToRegister(PackagesEntity entity, JucticeResultEntity resultEntity);
     PackagesEntity getPackage(String name);
     String deleteFromRegistr(String name);
+
+    List<MethodicsEntity> getEditableMethods();
+
+    String editRegister(MethodicsEntity method);
 }

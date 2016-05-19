@@ -32,7 +32,7 @@ public class CoordinationServiceImp implements CoordinatorService {
     PackageService packageService;
 
     public String setResult(String name, CoordinationResultsEntity resultsEntity, String act) {
-        List<QueriesEntity> queriesEntity = repository.findAll();
+        List<QueriesEntity> queriesEntity = getUncheckedQueries();
         for(QueriesEntity query: queriesEntity){
             if(query.getMethod().getNameOfMethodic().equals(name)){
                 query.setCoordinationResult(resultsEntity);
