@@ -83,7 +83,7 @@
                         <form method="post" action="/admin/coord/create">
                             <div class="row">
                                 <br>
-                                <input type="hidden" name="queryName" value="${queries.getMethod().nameOfMethodic}">
+                                <input type="hidden" name="queryName" value="${queries.getMethod().idMethodic}">
                                 <div class="input-group">
                                     <label for="message">Оцінка методики: </label>
                                     <input type="text" id="message" name="resultText" class="form-control" placeholder="Оцінка"/>
