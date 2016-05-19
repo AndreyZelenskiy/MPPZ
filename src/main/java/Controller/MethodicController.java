@@ -1,10 +1,15 @@
 package Controller;
 
+import Model.Entity.ClientsEntity;
+import Model.Entity.MethodType;
 import Model.Entity.MethodicsEntity;
+import Model.Repository.ClientsRepository;
+import Model.Repository.MethodicsRepository;
 import Model.Service.DeveloperService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +32,11 @@ public class MethodicController {
     @Inject
     DeveloperService developerService;
 
+    @Inject
+    ClientsRepository clientRepository;
 
+    @Inject
+    MethodicsRepository methodicsRepository;
 
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     public String showCreationPage(ModelMap map){
@@ -51,6 +60,50 @@ public class MethodicController {
         }
         map.put("createResult", str);
         return "methodicCreationPage";
+    }
+
+    @RequestMapping(value = "/mymethods", method = RequestMethod.GET)
+    public String showAuthorsMethodics(ModelMap map){
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        ClientsEntity developer = clientRepository.getClientsEntityByLogin(name).get(0);
+        map.put("methods", methodicsRepository.findMethodicByAuthor(developer));
+        map.put("types", MethodType.values());
+        map.put("roles", developer.getRoles());
+        return  "methodicsViewPage";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
+    public String editMethodView(@RequestParam(value = "methodType")String methodType,
+                                 @RequestParam(value = "methodName")String methodName,
+                                 @RequestParam(value = "methodText")String methodText,
+                                 ModelMap map){
+        map.put("methodName", methodName);
+        map.put("methodType", methodType);
+        map.put("methodText", methodText);
+        return "editMethodView";
+    }
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String editMethod(
+            @RequestParam(value = "methodType")String methodType,
+            @RequestParam(value = "methodName")String methodName,
+            @RequestParam(value = "methodText")String methodText,
+            ModelMap map){
+        MethodicsEntity currentMethod = methodicsRepository.getMethodicByNameOfMethodic(methodName).get(0);
+        if(methodText.length()==0 || methodType.length()==0){
+            methodText = currentMethod.getMethodicText();
+            methodType = String.valueOf(currentMethod.getMethodType());
+        }else{
+            String errorMessage = "";
+            String name = SecurityContextHolder.getContext().getAuthentication().getName();
+            ClientsEntity developer = clientRepository.getClientsEntityByLogin(name).get(0);
+            errorMessage = developerService.editMethod(methodName, methodType, methodText, developer);
+            map.put("createResult", errorMessage);
+        }
+        map.put("methodName", methodName);
+        map.put("methodType", methodType);
+        map.put("methodText", methodText);
+        return "editMethodView";
     }
 
     @RequestMapping(value = "/queries", method = RequestMethod.GET)

@@ -7,6 +7,7 @@ import Model.Entity.TypeOfQuery;
 import Model.Repository.CoordinationResultRepository;
 import Model.Repository.MethodicsRepository;
 import Model.Repository.QueriesRepository;
+import Model.Repository.RegistrRepository;
 import Model.Service.CoordinatorService;
 import Model.Service.PackageService;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,9 @@ import java.util.List;
  */
 @Service
 public class CoordinationServiceImp implements CoordinatorService {
+
+    @Inject
+    RegistrRepository registrRepository;
 
     @Inject
     QueriesRepository repository;
@@ -49,6 +53,19 @@ public class CoordinationServiceImp implements CoordinatorService {
             }
         }
         return null;
+    }
+
+    public List<MethodicsEntity> getEditableMethods() {
+        List<QueriesEntity> queriesList = getUncheckedQueries();
+        List<MethodicsEntity> result = new ArrayList<MethodicsEntity>();
+        for (QueriesEntity entity : queriesList) {
+            if(entity.getType() == TypeOfQuery.EDIT){
+                String name = entity.getMethod().getNameOfMethodic();
+                MethodicsEntity oldMethod = registrRepository.findEntityByMethod_NameOfMethodic(name).get(0).getMethod();
+                result.add(oldMethod);
+            }
+        }
+        return result;
     }
 
     public List<QueriesEntity> getUncheckedQueries() {

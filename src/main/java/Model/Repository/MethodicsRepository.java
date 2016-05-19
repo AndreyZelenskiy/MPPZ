@@ -1,5 +1,6 @@
 package Model.Repository;
 
+import Model.Entity.ClientsEntity;
 import Model.Entity.MethodicsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -11,5 +12,6 @@ import java.util.List;
 public interface MethodicsRepository extends JpaRepository<MethodicsEntity, Integer>{
     List<MethodicsEntity> getMethodicByNameOfMethodic(String name);
     List<MethodicsEntity> findMethodicByNameOfMethodic(String name);
+    List<MethodicsEntity> findMethodicByAuthor(ClientsEntity author);
 }
 

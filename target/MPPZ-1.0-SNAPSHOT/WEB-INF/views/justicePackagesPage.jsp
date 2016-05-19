@@ -1,5 +1,7 @@
 <%@ page import="Model.Entity.PackagesEntity" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="Model.Entity.TypeOfQuery" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: talizorah
   Date: 16.4.5
@@ -12,8 +14,12 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="/resources/coordQuery.css">
 </head>
 <body>
+
+<% int cnt2=0;%>
+<c:set var="cnt" value="0"/>
 <% String errorMessage = (String)request.getAttribute("resultText"); %>
 <div class="container">
     <%@include file="justiceheader.jsp"%>
@@ -41,85 +47,67 @@
         </div>
         <% } %>
     </div>
-    <c:forEach items="${dataSource}" var="dataSource">
-        <div class="col-md-12">
-            <br>
-            <div class="col-md-12">
-                <div class="col-md-12" style="display:flex;">
-                    <div class="col-md-2" style="font-weight: bold">
-                        Назва методики:
-                    </div>
-                    <div class="col-md-10">
-                        <c:out value="${dataSource.getMethod().nameOfMethodic}"/>
-                    </div>
-                </div>
-                <div class="col-md-12" style="display:flex;">
-                    <div class="col-md-2" style="font-weight: bold">
-                        Тип методики:
-                    </div>
-                    <div class="col-md-10">
-                        <c:out value="${dataSource.getMethod().methodType}"/>
-                    </div>
-                </div>
-                <div class="col-md-12" style="display:flex;">
-                    <div class="col-md-2" style="font-weight: bold">
-                        Текст методики:
-                    </div>
-                    <div class="col-md-10">
-                        <c:out value="${dataSource.getMethod().methodicText}"/>
-                    </div>
-                </div>
-                <div class="col-md-12" style="display:flex;">
-                    <div class="col-md-2" style="font-weight: bold">
-                        Дата створення:
-                    </div>
-                    <div class="col-md-10">
-                        <c:out value="${dataSource.getMethod().creatingDate}"/>
-                    </div>
-                    <br>
-                    <br>
-                </div>
+    <c:forEach items="${dataSource}" var="dataSource" varStatus="index">
+            <div class="container">
+                <div class="container col-md-6">
+                    <div><label form="methodName">Назва методики: </label> <p id="methodName">${dataSource.getMethod().nameOfMethodic}</p> </div>
+                    <div><label form="methodType">Тип методики: </label> <p id="methodType">${types[dataSource.getMethod().methodType].toString()}</p> </div>
+                    <div><label form="methodText">Текст методики: </label><br> <p id="methodText">${dataSource.getMethod().methodicText}</p> </div>
+                    <div><label form="queryType">Тип запиту: </label> <p id="queryType">${dataSource.type.toString()}</p> </div>
+                    <div><label form="methodDate">Дата створення методики: </label> <p id="methodDate">${dataSource.getMethod().creatingDate}</p> </div>
+                    <div><label form="methodDate">Рішення координаційної ради: </label> <p id="coordResult">${dataSource.getCoordinationResult().resultText}</p> </div>
+                    <form:form method="post" modelAttribute="JucticeResultEntity" action="/admin/just/confirm">
+                        <div class="row">
 
-                <div class="col-md-12" style="display:flex;">
-                    <div class="col-md-3" style="font-weight: bold">
-                       Оцінка координаційної ради:
-                    </div>
-                    <div class="col-md-9">
-                        <c:out value="${dataSource.getCoordinationResult().resultText}"/>
-                    </div>
-                    <br>
-                    <br>
+                            <input type="hidden" name="queryName" value="${dataSource.getMethod().nameOfMethodic}">
+                            <div class="input-group">
+                                <label for="message">Оцінка методики: </label>
+                                <form:input type="text" id="message" path="resultText" class="form-control" placeholder="Оцінка"/>
+                            </div>
+                            <div class="input-group">
+                                <form:errors path="resultText" cssClass="has-error" />
+                            </div>
+                            <br>
+                            <div style="display: flex">
+                                <div>
+                                    <button class="btn btn-primary" type="submit" name="action" value="confirm">
+                                        Прийняти
+                                    </button>
+                                </div>
+                                <div style="margin-left: 120px;">
+                                    <button class="btn btn-primary" type="submit" name="action" value="decline">
+                                        Відхилити
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </form:form>
                 </div>
-                <br>
-                <form:form method="post" modelAttribute="JucticeResultEntity" action="/admin/just/confirm">
-                    <div class="row">
-
-                        <input type="hidden" name="queryName" value="${dataSource.getMethod().idMethodic}">
-                        <div class="input-group">
-                            <label for="message">Оцінка методики: </label>
-                            <form:input type="text" id="message" path="resultText" class="form-control" placeholder="Оцінка"/>
-                        </div>
-                        <div class="input-group">
-                            <form:errors path="resultText" cssClass="has-error" />
-                        </div>
-                        <br>
-                        <div style="display: flex">
-                            <div>
-                                <button class="btn btn-primary" type="submit" name="action" value="confirm">
-                                    Прийняти
-                                </button>
-                            </div>
-                            <div style="margin-left: 120px;">
-                                <button class="btn btn-primary" type="submit" name="action" value="decline">
-                                    Відхилити
-                                </button>
-                            </div>
-                        </div>
-                        <hr>
+                <%if(queriesEntityList.get(cnt2).getType() == TypeOfQuery.EDIT){%>
+                <div class="container col-md-6">
+                    <div>
+                        <label form="editableMethodName">Назва методики: </label>
+                        <p id="editableMethodName">${editableMethods.get(cnt).nameOfMethodic}</p>
                     </div>
-                </form:form>
+                    <div>
+                        <label form="editableMethodType">Тип методики: </label>
+                        <p id="editableMethodType">${types[editableMethods.get(cnt).methodType].toString()}</p>
+                    </div>
+                    <div>
+                        <label form="editableMethodText">Текст методики: </label>
+                        <p id="editableMethodText">${editableMethods.get(cnt).methodicText}</p>
+                    </div>
+                    <div>
+                        <label form="editableMethodDate">Дата створення методики: </label>
+                        <p id="editableMethodDate">${editableMethods.get(cnt).creatingDate}</p>
+                    </div>
+                </div>
+                <c:set var="cnt" value="${cnt} + 1"/>
+                <%;} cnt2++;%>
             </div>
-        </div>
+            <br>
+            <br>
     </c:forEach>
 </div>
 </body>

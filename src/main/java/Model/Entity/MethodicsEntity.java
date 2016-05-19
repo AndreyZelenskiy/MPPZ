@@ -16,7 +16,7 @@ public class MethodicsEntity {
     private String nameOfMethodic;
     private String methodicText;
     private Date creatingDate;
-    private List<ClientsEntity> author;
+    private ClientsEntity author;
     private int methodType;
 
     public MethodicsEntity(){}
@@ -49,12 +49,13 @@ public class MethodicsEntity {
         this.nameOfMethodic = nameOfMethodic;
     }
 
-    @ManyToMany(mappedBy = "methodics")
-    public List<ClientsEntity> getAuthor() {
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "methodicAuthor")
+    public ClientsEntity getAuthor() {
         return author;
     }
 
-    public void setAuthor(List<ClientsEntity> author) {
+    public void setAuthor(ClientsEntity author) {
         this.author = author;
     }
 

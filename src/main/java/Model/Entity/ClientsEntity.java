@@ -99,11 +99,8 @@ public class ClientsEntity {
         this.roles = role;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "MethodicAuthor",
-            joinColumns = @JoinColumn(name = "idMethodic"),
-            inverseJoinColumns = @JoinColumn(name = "idAuthor")
-    )
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "methodicAuthor")
     public List<MethodicsEntity> getMethodics() {
         return methodics;
     }

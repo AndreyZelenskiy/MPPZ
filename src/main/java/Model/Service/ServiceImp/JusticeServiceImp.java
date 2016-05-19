@@ -37,6 +37,13 @@ public class JusticeServiceImp implements JusticeService {
         return null;
     }
 
+    public String editRegister(MethodicsEntity method) {
+        RegistrEntity entity = registrRepository.findEntityByMethod_NameOfMethodic(method.getNameOfMethodic()).get(0);
+        entity.setMethod(method);
+        registrRepository.save(entity);
+        return "Успішне редагування!";
+    }
+
     public List<PackagesEntity> getUncheckedPackages() {
 
         List<PackagesEntity> list = new ArrayList<PackagesEntity>();
@@ -53,6 +60,19 @@ public class JusticeServiceImp implements JusticeService {
         RegistrEntity registrEntity = registrRepository.findOne(Integer.valueOf(name));
         registrRepository.delete(registrEntity);
         return "Методика успішно видалена";
+    }
+
+    public List<MethodicsEntity> getEditableMethods() {
+        List<PackagesEntity> queriesList = getUncheckedPackages();
+        List<MethodicsEntity> result = new ArrayList<MethodicsEntity>();
+        for (PackagesEntity entity : queriesList) {
+            if(entity.getType() == TypeOfQuery.EDIT){
+                String name = entity.getMethod().getNameOfMethodic();
+                MethodicsEntity oldMethod = registrRepository.findEntityByMethod_NameOfMethodic(name).get(0).getMethod();
+                result.add(oldMethod);
+            }
+        }
+        return result;
     }
 
     public String addToRegister(PackagesEntity entity, JucticeResultEntity resultEntity) {

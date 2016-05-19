@@ -16,4 +16,6 @@ public interface CoordinatorService {
     boolean checkQuery(QueriesEntity entity);
 //    String getReview(MethodicsEntity entity);
     String setResult(String name, CoordinationResultsEntity resultsEntity, String action);
+
+    List<MethodicsEntity> getEditableMethods();
 }

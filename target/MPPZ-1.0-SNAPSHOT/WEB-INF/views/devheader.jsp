@@ -20,10 +20,12 @@
 <c:url value="/logout" var="logout"/>
 <c:url value="/admin/dev/show" var="createMethod"/>
 <c:url value="/admin/dev/queries" var="showQueries" />
+<c:url value="/admin/dev/mymethods" var="mymethods"/>
     <ul>
         <li><a href="${showMainpage}">Головна</a></li>
         <li><a href="${showMethods}">Методики</a></li>
         <li><a href="${createMethod}">Створення методики</a></li>
+        <li><a href="${mymethods}">Мої методики</a></li>
         <li style="float:right"><a href="${logout}">Вихід з системи</a></li>
     </ul>
 </body>

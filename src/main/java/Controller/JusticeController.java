@@ -53,6 +53,7 @@ public class JusticeController {
     public String showPackages(ModelMap map) {
         map.put("dataSource", justiceService.getUncheckedPackages());
         map.put("resultText", resultText);
+        map.put("editableMethods", justiceService.getEditableMethods());
         resultText = null;
         return "justicePackagesPage";
     }
@@ -77,7 +78,9 @@ public class JusticeController {
             if(action.equals("confirm")){
                 entity.setComplete(true);
                 entity.setReview(resultEntity.getResultText());
-                resultText = justiceService.addToRegister(justiceService.getPackage(name), resultEntity);
+                if(entity.getType() == TypeOfQuery.EDIT){
+                    resultText = justiceService.editRegister(entity.getMethod());
+                }else resultText = justiceService.addToRegister(justiceService.getPackage(name), resultEntity);
             }
             else{
                 entity.setComplete(false);
