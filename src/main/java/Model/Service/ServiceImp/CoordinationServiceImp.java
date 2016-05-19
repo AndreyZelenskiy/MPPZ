@@ -25,6 +25,9 @@ public class CoordinationServiceImp implements CoordinatorService {
     QueriesRepository repository;
 
     @Inject
+    CoordinationResultRepository coordinationResultRepository;
+
+    @Inject
     PackageService packageService;
 
     public String setResult(String id, CoordinationResultsEntity resultsEntity, String act) {
