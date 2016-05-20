@@ -10,7 +10,7 @@ import java.util.List;
  * Created by xoll on 11.04.16.
  */
 @Entity
-@Table(name = "Methodics", schema = "mydb", catalog = "")
+@Table(name = "methodics", schema = "mydb", catalog = "")
 public class MethodicsEntity {
     private int idMethodic;
     private String nameOfMethodic;

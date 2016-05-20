@@ -59,7 +59,7 @@
                     <form:form method="post" modelAttribute="JucticeResultEntity" action="/admin/just/confirm">
                         <div class="row">
 
-                            <input type="hidden" name="queryName" value="${dataSource.getMethod().nameOfMethodic}">
+                            <input type="hidden" name="queryName" value="${dataSource.getMethod().idMethodic}">
                             <div class="input-group">
                                 <label for="message">Оцінка методики: </label>
                                 <form:input type="text" id="message" path="resultText" class="form-control" placeholder="Оцінка"/>

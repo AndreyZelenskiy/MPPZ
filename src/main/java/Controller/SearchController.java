@@ -54,7 +54,7 @@ public class SearchController {
         for(RegistrEntity registrEntity: result){
             methodicsEntityList.add(registrEntity.getMethod());
         }
-        map.put("result", methodicsEntityList);
+        map.put("methods", result);
         map.put("types", MethodType.values());
         return "searchpage";
     }

@@ -53,7 +53,7 @@
                     <div><label form="queryType">Тип запиту: </label> <p id="queryType">${queries.type.toString()}</p> </div>
                     <div><label form="methodDate">Дата створення методики: </label> <p id="methodDate">${queries.getMethod().creatingDate}</p> </div>
                     <form class="form" method="post" action="/admin/coord/create">
-                        <input type="hidden" name="queryName" value="${queries.getMethod().nameOfMethodic}">
+                        <input type="hidden" name="queryName" value="${queries.getMethod().idMethodic}">
                         <div class="input-group">
                             <label   for="message">Оцінка методики: </label>
                             <input type="text" id="message" name="resultText" class="form-control" placeholder="Оцінка"/>

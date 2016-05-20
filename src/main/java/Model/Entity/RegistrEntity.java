@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by xoll on 12.04.16.
  */
 @Entity
-@Table(name = "Registr", schema = "mydb", catalog = "")
+@Table(name = "registr", schema = "mydb", catalog = "")
 public class RegistrEntity {
     private int idRegist;
     private Date editDate;

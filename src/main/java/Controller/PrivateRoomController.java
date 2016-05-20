@@ -27,7 +27,7 @@ public class PrivateRoomController {
     public String open(ModelMap map){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
-        ClientsEntity entity = clientsRepository.getClientsEntityByLogin(name).get(0);
+        ClientsEntity entity = clientsRepository.findOneByLogin(name);
         map.put(USER_NAME, name);
         switch (entity.getRoles().get(0)){
             case DEVELOPER:

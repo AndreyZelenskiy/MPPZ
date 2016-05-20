@@ -40,6 +40,10 @@ public class JusticeServiceImp implements JusticeService {
     public String editRegister(MethodicsEntity method) {
         RegistrEntity entity = registrRepository.findEntityByMethod_NameOfMethodic(method.getNameOfMethodic()).get(0);
         entity.setMethod(method);
+        Date d = new Date();
+        java.sql.Date date = new java.sql.Date(d.getTime());
+
+        entity.setEditDate(date);
         registrRepository.save(entity);
         return "Успішне редагування!";
     }

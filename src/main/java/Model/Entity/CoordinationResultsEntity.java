@@ -8,7 +8,7 @@ import java.util.List;
  * Created by xoll on 11.04.16.
  */
 @Entity
-@Table(name = "CoordinationResults", schema = "mydb", catalog = "")
+@Table(name = "coordinationresults", schema = "mydb", catalog = "")
 public class CoordinationResultsEntity {
     private int idCoordinationResult;
     private String resultText;

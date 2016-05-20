@@ -10,6 +10,9 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="/resources/css/jquery-1.12.3.min.js"></script>
+    <script src="/resources/sortFunc.js"></script>
+    <script src="/resources/sort.js"></script>
 </head>
 <body>
 <div class="container">
@@ -28,7 +31,7 @@
                 <input type="text" id="nameLabel" class="form-control" name="methodName" placeholder="Назва методики">
             </div>
             <div class="col-md-4 col-md-offset-2">
-                <input type="checkbox" checked="true" name="formDoor[]" value="Complex" />Комплексна експертиза<br />
+                <input type="checkbox" name="formDoor[]" value="Complex" />Комплексна експертиза<br />
                 <input type="checkbox" name="formDoor[]" value="Write" />Почеркознавча експертиза<br />
                 <input type="checkbox" name="formDoor[]" value="Technic" />Технічна експертиза<br />
                 <div align="left">
@@ -42,21 +45,25 @@
     <div style="margin-top: 50px">
         <table style="margin-top: 30px">
             <tr>
-                <th>Назва методики</th>
-                <th>Тип методики</th>
-                <th>Текст методики</th>
-                <th>Дата створення</th>
+                <th style="cursor: pointer;" id="name">Назва методики</th>
+                <th style="cursor: pointer;" id = "type">Тип методики</th>
+                <th style="cursor: pointer;" id = "text">Текст методики</th>
+                <th style="cursor: pointer;" id = "date">Дата створення</th>
+                <th style="cursor: pointer;" id = "end">Дата редагування</th>
+                <th style="cursor: pointer;" id = "author">Автор</th>
             </tr>
-            <c:forEach items="${result}" var="result">
+            <c:forEach items="${methods}" var="methods">
                 <tr>
-                    <td><c:out value="${result.nameOfMethodic}"/></td>
-                    <td><c:out value="${types[result.methodType].toString()}"/></td>
-                    <td><c:out value="${result.methodicText}"/></td>
-                    <td><c:out value="${result.creatingDate}"/></td>
+                    <td><c:out value="${methods.getMethod().nameOfMethodic}"/></td>
+                    <td><c:out value="${types[methods.getMethod().methodType].toString()}"/></td>
+                    <td><c:out value="${methods.getMethod().methodicText}"/></td>
+                    <td><c:out value="${methods.getMethod().creatingDate}"/></td>
+                    <td><c:out value="${methods.editDate}"/></td>
+                    <td><c:out value="${methods.getMethod().getAuthor().name}"/></td>
                 </tr>
             </c:forEach>
         </table>
-        <% List<MethodicsEntity> queriesEntityList = (List<MethodicsEntity>)request.getAttribute("result");
+        <% List<MethodicsEntity> queriesEntityList = (List<MethodicsEntity>)request.getAttribute("methods");
             if(queriesEntityList != null)
                 if(queriesEntityList.size() == 0){%>
         <div class="col-md-12">

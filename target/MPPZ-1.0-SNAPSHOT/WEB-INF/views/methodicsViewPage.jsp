@@ -14,6 +14,7 @@
 <head>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <%--<script src="/resources/css/jquery-1.12.3.min.js"></script>--%>
+    <script src="/resources/css/jquery-1.12.3.min.js"></script>
     <script src="/resources/sortFunc.js"></script>
     <script src="/resources/sort.js"></script>
     <link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.css">
