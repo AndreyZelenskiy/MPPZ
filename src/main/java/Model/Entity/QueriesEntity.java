@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by xoll on 11.04.16.
  */
 @Entity
-@Table(name = "Queries", schema = "mydb", catalog = "")
+@Table(name = "queries", schema = "mydb", catalog = "")
 public class QueriesEntity {
     private int idQuery;
     private MethodicsEntity method;

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by xoll on 12.04.16.
  */
 @Entity
-@Table(name = "JucticeResult", schema = "mydb", catalog = "")
+@Table(name = "jucticeresult", schema = "mydb", catalog = "")
 public class JucticeResultEntity {
     private int idJucticeResult;
     private String resultText;
@@ -35,7 +35,7 @@ public class JucticeResultEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "DeveloperJusticeResult",
+            name = "developerjusticeresult",
             joinColumns = @JoinColumn(name = "idDeveloper"),
             inverseJoinColumns = @JoinColumn(name = "idJusticeResult")
     )

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by xoll on 11.04.16.
  */
 @Entity
-@Table(name = "Clients", schema = "mydb", catalog = "")
+@Table(name = "clients", schema = "mydb", catalog = "")
 public class ClientsEntity {
     private int idClients;
     private String login;
@@ -88,7 +88,7 @@ public class ClientsEntity {
         this.surname = surname;
     }
 
-    @JoinTable(name = "Role", joinColumns = @JoinColumn(name = "ClientId"))
+    @JoinTable(name = "role", joinColumns = @JoinColumn(name = "ClientId"))
     @Enumerated(EnumType.ORDINAL)
     @ElementCollection(fetch = FetchType.EAGER)
     public List<Role> getRoles() {
@@ -111,7 +111,7 @@ public class ClientsEntity {
 
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "DeveloperCoordResult",
+    @JoinTable(name = "developercoordresult",
         joinColumns = @JoinColumn(name = "idCoordinationResult"),
             inverseJoinColumns = @JoinColumn(name = "idDeveloper")
     )

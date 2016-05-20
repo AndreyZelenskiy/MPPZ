@@ -53,7 +53,7 @@
                     <div><label form="queryType">Тип запиту: </label> <p id="queryType">${queries.type.toString()}</p> </div>
                     <div><label form="methodDate">Дата створення методики: </label> <p id="methodDate">${queries.getMethod().creatingDate}</p> </div>
                     <form class="form" method="post" action="/admin/coord/create">
-                        <input type="hidden" name="queryName" value="${queries.getMethod().nameOfMethodic}">
+                        <input type="hidden" name="queryName" value="${queries.getMethod().idMethodic}">
                         <div class="input-group">
                             <label   for="message">Оцінка методики: </label>
                             <input type="text" id="message" name="resultText" class="form-control" placeholder="Оцінка"/>
@@ -87,47 +87,9 @@
                         <label form="editableMethodText">Текст методики: </label>
                         <p id="editableMethodText">${editableMethods.get(cnt).methodicText}</p>
                     </div>
-<<<<<<< HEAD
                     <div>
                         <label form="editableMethodDate">Дата створення методики: </label>
                         <p id="editableMethodDate">${editableMethods.get(cnt).creatingDate}</p>
-=======
-                    <div class="col-md-12" style="display:flex;">
-                        <div class="col-md-2" style="font-weight: bold">
-                            Дата створення:
-                        </div>
-                        <div class="col-md-10">
-                            <c:out value="${queries.getMethod().creatingDate}"/>
-                        </div>
-                        <br>
-                    </div>
-                    <br>
-                    <div class="col-md-12">
-                        <form method="post" action="/admin/coord/create">
-                            <div class="row">
-                                <br>
-                                <input type="hidden" name="queryName" value="${queries.getMethod().idMethodic}">
-                                <div class="input-group">
-                                    <label for="message">Оцінка методики: </label>
-                                    <input type="text" id="message" name="resultText" class="form-control" placeholder="Оцінка"/>
-                                </div>
-                                <br>
-                                <div style="display: flex">
-                                    <div>
-                                        <button class="btn btn-primary" type="submit" name="action" value="confirm">
-                                            Прийняти
-                                        </button>
-                                    </div>
-                                    <div style="margin-left: 120px;">
-                                        <button class="btn btn-primary" type="submit" name="action" value="decline">
-                                            Відхилити
-                                        </button>
-                                    </div>
-                                </div>
-                                <hr>
-                            </div>
-                        </form>
->>>>>>> 113cbd31cedec7040ef0cadf03cf637486153252
                     </div>
                 </div>
                 <%cnt++;}cnt2++;%>
